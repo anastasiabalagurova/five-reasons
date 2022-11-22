@@ -1,0 +1,287 @@
+* {
+    box-sizing: border-box;
+  }
+
+  html{
+      font-size: 16px;
+  }
+  
+  :root {
+    --black: #3b3b3b;
+    --white: #ffffff;
+    --red: #E30613;
+    --grey: #ACACAC;
+    --lightgrey: #F6F8FB;
+  }
+
+  body{
+      margin: 0;
+  }
+
+.container{
+    width: 1440px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.container--wide {
+    max-width: 1380px;
+    
+}
+
+.menuTemp{
+ height:148px;
+}
+   /* intro */
+
+   #intro {
+    height: 80vh;
+    text-align: center;    
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+
+  .intLogo{
+      margin-top: 6rem;
+      margin-bottom: 1rem;
+      width: 90%;
+  }
+
+ .intTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2rem;
+    color: var(--black);
+    width: 600px;
+  }
+
+  .intBackground{
+    margin-top: -10rem;
+      z-index: -1;
+  }
+
+  
+  /* chapters */
+
+  .chapter{
+    height: 100vh;
+    text-align: center;    
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.chapterTitle{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--black);
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+}
+
+  .chapterLead{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 150%;    
+    text-align: center;  
+    color: var(--black);
+    opacity: 0.45;
+    width: 40rem;
+  }
+
+
+ /* fixed navigation elements */
+
+ ul {
+    list-style: none;
+    width: max-content;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tag {
+    padding: 0.3rem 0rem 0.3rem 0rem;
+    color: var(--grey);
+    font-size: 0.8rem;
+    font-weight: 400;
+    width: max-content;
+    font-family: 'Montserrat';
+  }
+
+
+ .tagList{
+     top: 0;
+     margin: 0 0 0 auto;
+    display: flex;
+    position: sticky !important;
+    justify-content: flex-end;
+    z-index:10;
+ }
+
+ .tagActive{
+    color: var(--red);  
+ }
+
+
+ .back{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     position: fixed;
+     bottom: 0;   
+     margin: auto auto 0.6rem 0; 
+     border-radius: 10rem;
+     z-index: 10; 
+     font-family: 'Montserrat';
+     font-size: 0.8rem;
+     font-weight: 400;
+ }
+
+ #backIcon{
+     padding-right: 0.4rem;
+ }
+
+
+ /* scrolly thingy */
+
+
+ #scrolly {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  #scrolly>* {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  
+  article {
+    position: relative;
+    padding: 2rem 0 0 0;
+    max-width: 30%;
+    margin-bottom: 20rem;
+  }
+
+
+  .sticky-thing {
+    position: -webkit-sticky;
+    position: sticky;
+    padding-top: 3rem;
+    left: 0;
+    z-index: 0;
+    top: 0vh;
+    height: 100vh;
+  }
+  
+  .chart {
+    width: 100%;
+    height: 80%;
+    background-color: var(--lightgrey);
+  }
+
+  #chart5{
+    background-color: var(--white)!important;
+  }
+  
+  
+  .stepDif {
+    flex-direction: row-reverse;
+    display: flex;
+  }
+  
+  .sticky-thing p {
+    padding: 1rem;
+    font-size: 8rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  
+  .step {
+    position: relative;
+    margin-bottom: 20rem;
+    background-color: var(--white);
+    color: #000;
+    border-radius: 4px;
+    padding: 2rem 2.4rem 2.4rem 1.8rem;
+    gap: 10px;
+    margin-top: 10rem;
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    line-height: 150%;
+  }
+
+  .step.is-active {
+    background-color: goldenrod;
+    color: #3b3b3b;
+}
+  
+  .step:last-child {
+    margin-bottom: 0;
+  }
+
+  /* factoids */
+
+  .factoid{
+    background-color: var(--lightgrey);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 4.2rem 1.4rem 1.4rem 1.4rem;
+  }
+
+  .factoid p{
+    padding-right: 1rem;
+    padding-top: 0.4rem;
+    height: fit-content;
+    margin: 0;
+    line-height: 140%;
+    font-size: 0.9rem;
+  }
+
+  .number{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    color: var(--red);
+    font-size: 3.5rem;
+    margin-bottom: 0.6rem;
+    padding-top:2rem;
+  }
+
+  .secondNumber{
+      padding-top:2.3rem;
+  }
+
+  .unit{
+      padding-left:0.4rem;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  /* charts */
+
+  .mybar{
+      color: var(--red);
+  }

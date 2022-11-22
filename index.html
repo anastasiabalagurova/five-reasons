@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 причин инвестировать</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-axis@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,600,700" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <div class="container container--wide">
+        <div class="back">
+            <img src="images/icon.svg" id="backIcon">
+            <div>Раздел «Частным инвесторам»</div>
+        </div>
+<div class = "menuTemp"><img src="images/menuTemp.jpg" width="100%"></div>
+        <section id="intro">
+            <div class="intLogo"><img src="images/logo.svg"></div>
+            <div class="intTitle">Пять причин инвестировать в Магнит</div>
+            <div class="intBackground"><img src="images/intro-bag.png" width="100%"></div>
+        </section>
+        <div class="tagList">
+            <ul>
+                <li>
+                    <div class="tag">Потенциал рынка</div>
+                </li>
+                <li>
+                    <div class="tag">Ведущий игрок в секторе</div>
+                </li>
+                <li>
+                    <div class="tag">Активный рост</div>
+                </li>
+                <li>
+                    <div class="tag">Повышение эффективности</div>
+                </li>
+                <li>
+                    <div class="tag">Дивиденды</div>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <section class="chapter" id="chapter-1">
+            <div class="chapterImage"><img src="images/reason1.png"></div>
+            <div class="chapterTitle">Потенциал рынка</div>
+            <div class="chapterLead">Мы предлагаем доступ на крупный рынок с возможностями для органического роста
+                и консолидации</div>
+        </section>
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <div class="chart" id="chart-1"></div>
+            </div>
+            <article>
+                <div class="step" data-step="1">
+                    <p>Большой рынок с возрастающей долей современных форматов продуктового ритейла и возможностями для
+                        органического роста</p>
+                </div>
+
+                <div class="step" data-step="2">
+                    <p>Фрагментированный рынок с высоким потенциалом для дальнейшей консолидации</p>
+                    <div class="factoid">
+                        <div class="number">42<span class="unit">%</span></div>
+                        <p>доля топ-5 ритейлеров в России в 2021 году</p>
+                    </div>
+                    <p>Увеличение доли крупных игроков на рынке</p>
+                    <p>Новые ниши и возможности развития на рынке с постоянно растущим сегментом онлайн-продаж</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="chapter" id="chapter-2">
+            <div class="chapterImage"><img src="images/reason1.png"></div>
+            <div class="chapterTitle">Ведущий игрок в секторе</div>
+            <div class="chapterLead">«Магнит» — один из крупнейших продуктовых ритейлеров в России с развитой
+                инфраструктурой, обширной базой лояльных покупателей, узнаваемым брендом и растущей долей на рынке</div>
+        </section>
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <div class="chart" id="chart-2"></div>
+            </div>
+            <article>
+                <div class="step" data-step="1">
+                    <p>Мультиформатное предложение, в рамках которого четыре основных формата представлены такими
+                        сегментами, как продукты питания, косметика и аптеки</p>
+                    <p>Широкий охват:</p>
+                    <div class="factoid">
+                        <div class="number">3 898</div>
+                        <p>населенных пунктов в 7 федеральных округах</p>
+                        <div class="number secondNumber">26 077</div>
+                        <p>магазинов Магнит по всей стране</p>
+                    </div>
+                </div>
+                <div class="step" data-step="2">
+                    <p>Рыночная доля в продовольственной рознице на уровне 11,5%. </p>
+                    <p>Обслуживание покупателей во всех густонаселенных регионах России:</p>
+                    <div class="factoid">
+                        <div class="number">67</div>
+                        <p>регионов</p>
+                        <div class="number secondNumber">58,7<span class="unit">млн</span></div>
+                        <p>карт лояльности</p>
+                    </div>
+                </div>
+                <div class="step" data-step="2">
+                    <p>Развитая цепочка поставок, включающая 45 распределительных центров и один из крупнейших в России
+                        собственных парков грузовых автомобилей</p>
+                    <p>Единственный в России вертикально интегрированный ритейлер: 18 собственных производственных
+                        площадок и агропромышленных комплексов</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="chapter" id="chapter-3">
+            <div class="chapterImage"><img src="images/reason1.png"></div>
+            <div class="chapterTitle">Активный рост</div>
+            <div class="chapterLead">Ускоряем темпы роста Компании с акцентом на доходность для дальнейшего расширения
+                рыночной доли</div>
+        </section>
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <div class="chart" id="chart-3"></div>
+            </div>
+            <article>
+                <div class="step" data-step="1">
+                    <p>Повышение темпов органического роста с акцентом на создании дополнительной акционерной стоимости
+                    </p>
+                    <div class="factoid">
+                        <div class="number">+20<span class="unit">%</span></div>
+                        <p>рост торговой площади год к году </p>
+                        <div class="number secondNumber">+17<span class="unit">%</span></div>
+                        <p>рост объема производства на собственных предприятиях</p>
+                    </div>
+                </div>
+
+                <div class="step" data-step="2">
+                    <p>«Умное» развитие с высокими требованиями к доходности при запуске новых проектов</p>
+                    <p>Анализ возможности приобретения малых и средних компаний для повышения акционерной стоимости и укрепления рыночных позиций</p>
+                </div>
+
+                <div class="step" data-step="2">
+                    <p>Программа редизайна сети магазинов «Магнит» с целью повышения плотности продаж</p>
+                    <p>Создание ведущей платформы онлайн-доставки продуктов, способной обслуживать >5% оборота</p>
+                    <p>Проактивное изучение новых смежных сегментов, создающих дополнительную акционерную стоимость</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="chapter" id="chapter-4">
+            <div class="chapterImage"><img src="images/reason1.png"></div>
+            <div class="chapterTitle">Повышение эффективности</div>
+            <div class="chapterLead">Мы обладаем огромным потенциалом для развития бизнеса</div>
+        </section>
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <div class="chart" id="chart-4"></div>
+            </div>
+            <article>
+                <div class="step" data-step="1">
+                    <p>Дальнейшее совершенствование ценностного предложения для покупателей (CVP) направленные
+                        на улучшение покупательского опыта и восприятия, с целью повышения плотности продаж и увеличения
+                        рентабельности.</p>
+                </div>
+
+                <div class="step" data-step="1">
+                    <p>Повышение плотности продаж, в том числе за счет ускорения программы редизайна и совершенствования
+                        процессов</p>
+                    <p>Расширение предложения для покупателей, дополняющего основной бизнес</p>
+                </div>
+
+                <div class="step" data-step="2">
+                    <p>Улучшение рентабельности по EBITDA до уровня 8% в период 2021-2024 гг. и последующий рост
+                        8%+ (МСБУ 17) с 2025 г., несмотря на развитие канала электронной коммерции и формата
+                        дискаунтеров.</p>
+                </div>
+
+                <div class="step" data-step="2">
+                    <p>Фокус на постоянном увеличении доходности и создании дополнительной ценности для акционеров —
+                        двузначный рост ROIC в 2025 г. vs 2021 г.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="chapter" id="chapter-5">
+            <div class="chapterImage"><img src="images/reason1.png"></div>
+            <div class="chapterTitle">Дивиденды</div>
+            <div class="chapterLead">Строгая дисциплина в вопросах управления капиталом с акцентом на доходность при
+                принятии инвестиционных решений для существенных дивидендных выплат</div>
+        </section>
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <div class="chart" id="chart5"></div>
+            </div>
+            <article>
+
+
+                <div class="step" data-step="9">
+                    <p>Открытие качественных торговых объектов как способ повышения окупаемости инвестиций</p>
+                    <p>Поддержание показателя «Чистый долг / EBITDA» на оптимальном уровне около 1,5х (МСБУ 17)</p>
+                    <p>Четкий план по улучшению оборотного капитала с акцентом на оптимизацию оборачиваемости запасов
+                        в днях</p>
+                </div>
+                <div class="step" data-step="1">
+                    <div class="factoid">
+                        <div class="number">1,5<span class="unit">x</span></div>
+                        <p>уровень долговой нагрузки (МСБУ 17) на 31 декабря 2021 г.</p>
+                        <div class="number secondNumber">64,2<span class="unit">млрд ₽ </span></div>
+                        <p>чистый денежный поток в 2021 г., без учета приобретения «Дикси»</p>
+                    </div>
+                </div>
+
+
+                <div class="step" data-step="1">
+                    <p>Создание дополнительной стоимости для акционеров для стабильно высоких дивидендных выплат</p>
+                </div>
+
+            </article>
+
+        </section>
+
+        <script src="script.js"></script>
+        <script src="chart.js"></script>
+    </div>
+    <div class = "footerTemp"><img src="images/footerTemp.png" width="100%"></div>
+
+</body>
+
+</html>
