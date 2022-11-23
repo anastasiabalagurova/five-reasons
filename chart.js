@@ -3,11 +3,16 @@ const margin = {top: 200, right: 30, bottom: 90, left: 0},
     width = 900 - margin.left - margin.right,
     height = 750 - margin.top - margin.bottom;
 
+    const svgWidth = width + margin.left + margin.right,
+    svgHeight = height + margin.top + margin.bottom;
+
+
 // append the svg object to the body of the page
 const svg = d3.select("#chart5")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", "0 0 " + svgWidth + " " + svgHeight)
     // .attr("preserveAspectRatio", "xMinYMax meet")
     // .attr("viewBox", "0 0" + " " + width + " " + height)
   .append("g")
@@ -105,6 +110,24 @@ svg.selectAll(".label")
     .classed("label",true)
 
 
+   //think about rects under red labels
+    // svg.selectAll(".labelRedRect") 
+    // .data(data)
+    // .join("rect")
+    //     .attr("x", function(d){
+    //         return x(d.Year) +10;
+    //     })
+    //     .attr("y", function(d){
+    //         return y2(parseFloat(d.Value2)) - 220;
+    //     })
+        
+    //     .attr("fill" , "white")
+    //     .attr("width", x.bandwidth()/2)
+    //     .attr("height", 16)
+    //     .classed("labelRedRect",true)
+
+
+
     //labels Red dots
     svg.selectAll(".labelRed") 
     .data(data)
@@ -124,6 +147,10 @@ svg.selectAll(".label")
         .attr("text-anchor", "middle")
         .style("opacity",0)
         .classed("labelRed",true)
+
+
+       
+    
     
 
 
