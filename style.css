@@ -35,6 +35,7 @@
 
 .menuTemp{
  height:148px;
+ z-index: 100;
 }
    /* intro */
 
@@ -44,13 +45,17 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    background-image: url("images/background.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
   }
 
 
   .intLogo{
-      margin-top: 6rem;
+      margin-top: 12vh;
       margin-bottom: 1rem;
       width: 90%;
   }
@@ -75,8 +80,12 @@
   .chapter{
     height: 100vh;
     text-align: center;    
-    margin: 0;
+    margin: -5rem 0 0 0;
     display: flex;
+    position: inherit;
+    top:0;
+    background-image: url("images/chapter5.png");
+    background-size:100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -90,7 +99,7 @@
     line-height: 2rem;
     text-align: center;
     color: var(--black);
-    margin-top: 2rem;
+    margin-top: 14rem;
     margin-bottom: 1.4rem;
 }
 
@@ -106,6 +115,13 @@
     width: 40rem;
   }
 
+  .chapterImage{
+    display: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
+  }
+
 
  /* fixed navigation elements */
 
@@ -119,7 +135,6 @@
 
   .tag {
     padding: 0.3rem 0rem 0.3rem 0rem;
-    color: var(--grey);
     font-size: 0.8rem;
     font-weight: 400;
     width: max-content;
@@ -128,10 +143,11 @@
 
 
  .tagList{
-     top: 0;
+     
      margin: 0 0 0 auto;
     display: flex;
     position: sticky !important;
+    top: 0;
     justify-content: flex-end;
     z-index:10;
  }
@@ -139,6 +155,11 @@
  .tagActive{
     color: var(--red);  
  }
+
+ .tagInactive{
+  color: var(--grey);
+  opacity: 0.4;
+}
 
 
  .back{
@@ -196,7 +217,7 @@
   
   .chart {
     width: 100%;
-    height: 80%;
+    height: 70%;
     background-color: var(--lightgrey);
   }
 
@@ -237,7 +258,7 @@
 }
   
   .step:last-child {
-    margin-bottom: 0;
+    margin-bottom: 10rem;
   }
 
   /* factoids */
@@ -249,7 +270,8 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 4.2rem 1.4rem 1.4rem 1.4rem;
+    border-radius: 4px;
+    padding: 1.4rem 1.4rem 4.2rem 1.4rem;
   }
 
   .factoid p{
@@ -299,7 +321,7 @@
   .greyText{
     background-color: var(--grey2);
     padding: 2px 6px;
-    margin: 0 0.4rem;
+    margin: 0 0.2rem;
     border-radius: 4px;
   }
 
@@ -312,4 +334,25 @@
     position: absolute;
     top:0;  
     padding-top: 2rem;  
+  }
+
+
+  /* path animation */
+
+  .lineAnimation {
+    animation: drawLine 2s linear;
+    /* transform: rotate(-90deg); */
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  
+  @keyframes drawLine {
+    0% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1200;
+    }
+  
+    100% {
+      stroke-dashoffset: 0;
+    }
   }

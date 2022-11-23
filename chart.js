@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margin = {top: 200, right: 30, bottom: 90, left: 0},
     width = 900 - margin.left - margin.right,
-    height = 650 - margin.top - margin.bottom;
+    height = 750 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart5")
@@ -15,8 +15,8 @@ const svg = d3.select("#chart5")
 d3.csv("data/chart5.csv").then( function(data) {
 
   d3.select("#chart5")
-  .append("div")
-  .html("Динамика <span class='greyText'>выплаченных дивидендов </span> и <span class='redText'>дивидендной доходности</span> на конец периода")
+  .append("h1")
+  .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
   .classed("chartTitle", true);
 
 
@@ -51,15 +51,16 @@ svg.selectAll("mybar")
 
 
 //dots
-
 var lineGenerator = d3.line()
 .x(function (d) {
     return x(d.Year)+ x.bandwidth()/2;
 })
 .y(function (d) {
-    return y2(parseFloat(d.Value2)) -300;
+    return y2(parseFloat(d.Value2)) -200;
 });
 
+
+//Red line
 svg.append("path")
     .datum(data)
     .attr("class","line")
@@ -73,25 +74,12 @@ svg.append("path")
     .data(data)
     .join("circle") // enter append
       .attr("class", "circles")
-      .attr("r", "3") // radius
+      .attr("r", "0") // radius
       .attr("fill", "#E30613")
       .attr("cx", d=> x(d.Year) + x.bandwidth()/2)   // center x passing through your xScale
-      .attr("cy", d=> y2(parseFloat(d.Value2)) - 300)   // center y through your yScale
+      .attr("cy", d=> y2(parseFloat(d.Value2)) - 200)   // center y through your yScale
 
-
-// svg.selectAll(".label")        
-//     .data(data)
-//     .enter()
-//     .append("text")
-//     .attr("class","label")
-//     // .attr("x", (function(d) { return x(d.date); }  ))
-//     // .attr("y", function(d) { return y(d.value) - 20; })
-//     .attr("x", (function(d,i) { return x(d.date); }  ))
-//     .attr("y", function(d,i) { return y(d.value) + 20 })
-//     .style("color","#000000")
-//     .text(function(d) { return d.value; });     
-
-const format = d3.format(".1f");
+ 
 
 //labels
 svg.selectAll(".label") 
@@ -125,7 +113,7 @@ svg.selectAll(".label")
             return x(d.Year) + x.bandwidth()/2;
         })
         .attr("y", function(d){
-            return y2(parseFloat(d.Value2)) - 310;
+            return y2(parseFloat(d.Value2)) - 210;
         })
         .attr("font-family" , "Montserrat")
         .attr("font-size" , "12px")
@@ -137,10 +125,6 @@ svg.selectAll(".label")
 
 
     //title
-
-    
-    
-
 
 
 //draw x axis
@@ -214,54 +198,94 @@ svg.append("g")
         // steps.forEach(el => el.classList.remove('is-active'));
         // el.classList.add('is-active');
 
-        if(currentIndex === 12){
+        if(currentIndex === 0){
         //    document.getElementById("chart5").style.color="red";
-            d3.select("#chart5")
-            .select("svg")
-            .selectAll("rect")
-            .transition()
-            .duration(1000)
-            .attr("y", d => y(parseFloat(d.Value)))
-            .attr("height", d => height - y(parseFloat(d.Value)))
-            .delay((d,i) => {console.log(i); return i*100})
+           
 
             d3.select("#chart5")
             .select("svg")
             .selectAll("path")
+            .classed("lineAnimation",true)
             .transition()
             .duration(1000)
             .style("opacity",1)
             .delay((d,i) => {console.log(i); return i*100})
 
             d3.select("#chart5")
-                .select("svg")
-                .selectAll(".label")
-                .transition()
-                .duration(1000)
-                .style("opacity",1)
-                .delay((d,i) => {console.log(i); return i*130})
+            .select("svg")
+            .selectAll(".labelRed")
+            .transition()
+            .duration(1000)
+            .style("opacity",1)
+            .delay((d,i) => {console.log(i); return i*130})
 
-                d3.select("#chart5")
-                .select("svg")
-                .selectAll(".labelRed")
-                .transition()
-                .duration(1000)
-                .style("opacity",1)
-                .delay((d,i) => {console.log(i); return i*130})
+            svg.selectAll(".circles")
+            .transition()
+            .duration(1000)
+            .attr("r","3")
+            .delay((d,i) => {console.log(i); return i*130})
+
+            d3.select("#chart5")
+            .select("h1")
+            .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
+            .classed("chartTitle", true);  
             }
 
 
-        if(currentIndex === 13){
-            //    document.getElementById("chart5").style.color="red";
-                d3.select("#chart5")
-                .select("svg")
-                .selectAll("rect")
-                .transition()
-                .duration(800)
-                .attr("y", d => y(parseFloat(d.Value)))
-                .attr("height", d => height - y(parseFloat(d.Value)))
-                .delay((d,i) => {console.log(i); return i*100})
+                     
 
+
+        if(currentIndex === 2){
+
+ 
+
+
+          d3.select("#chart5")
+            .select("svg")
+            .selectAll(".label")
+            .transition()
+            .duration(1000)
+            .style("opacity",1)
+            .delay((d,i) => {console.log(i); return i*130})
+
+
+          d3.select("#chart5")
+            .select("svg")
+            .selectAll("rect")
+            .transition()
+            .duration(800)
+            .attr("y", d => y(parseFloat(d.Value)))
+            .attr("height", d => height - y(parseFloat(d.Value)))
+            .delay((d,i) => {console.log(i); return i*100})
+
+
+  
+            d3.select("#chart5")
+            .select("h1")
+            .html("Динамика <span class='redText'>дивидендной доходности</span> и <span class='greyText'>выплаченных дивидендов</span> на конец периода")
+            .classed("chartTitle", true);
+
+
+            svg.select("path")
+            .transition()
+            .duration(1000)
+            .attr("transform","translate(0,-150)")
+
+
+
+
+            svg.selectAll(".labelRed")
+            .transition()
+            .duration(1000)
+            .attr("y", function(d){
+              return y2(parseFloat(d.Value2)) - 360;
+          })
+
+
+            svg.selectAll(".circles")
+            .transition()
+            .duration(1000)
+            .attr("cy", d=> y2(parseFloat(d.Value2)) - 350) 
                 
                 }
         
