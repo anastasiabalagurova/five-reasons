@@ -10,7 +10,8 @@
     --black: #3b3b3b;
     --white: #ffffff;
     --red: #E30613;
-    --grey: #ACACAC;
+    --grey: #020202;
+    --grey2: #E6E9EF;
     --lightgrey: #F6F8FB;
   }
 
@@ -284,4 +285,31 @@
 
   .mybar{
       color: var(--red);
+  }
+
+
+  .redText{
+    background-color: var(--red);
+    padding: 2px 6px;
+    margin: 0 0.4rem;
+    border-radius: 4px;
+    color: var(--white);
+  }
+
+  .greyText{
+    background-color: var(--grey2);
+    padding: 2px 6px;
+    margin: 0 0.4rem;
+    border-radius: 4px;
+  }
+
+  .chartTitle{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    color: var(--black);
+    font-size: 1rem;
+    position: absolute;
+    top:0;  
+    padding-top: 2rem;  
   }

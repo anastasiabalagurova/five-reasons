@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-const margin = {top: 90, right: 30, bottom: 90, left: 0},
+const margin = {top: 200, right: 30, bottom: 90, left: 0},
     width = 900 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 650 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart5")
@@ -14,6 +14,10 @@ const svg = d3.select("#chart5")
 // Parse the Data
 d3.csv("data/chart5.csv").then( function(data) {
 
+  d3.select("#chart5")
+  .append("div")
+  .html("Динамика <span class='greyText'>выплаченных дивидендов </span> и <span class='redText'>дивидендной доходности</span> на конец периода")
+  .classed("chartTitle", true);
 
 
 // Add Y axis
@@ -29,6 +33,11 @@ const y = d3.scaleLinear()
     .domain(data.map(d => d.Year))
     .padding(0.2)
 
+    const y2 = d3.scaleLinear()
+    .domain([0, 15])
+    .range([ height, 0]);
+
+
 // Bars
 svg.selectAll("mybar")
   .data(data)
@@ -41,6 +50,96 @@ svg.selectAll("mybar")
     .attr("y", d => y(0))
 
 
+//dots
+
+var lineGenerator = d3.line()
+.x(function (d) {
+    return x(d.Year)+ x.bandwidth()/2;
+})
+.y(function (d) {
+    return y2(parseFloat(d.Value2)) -300;
+});
+
+svg.append("path")
+    .datum(data)
+    .attr("class","line")
+    .attr("d",lineGenerator)
+    .attr("fill", "none")
+    .attr("stroke", "#E30613")
+    .style("opacity",0)
+    .attr("stroke-width", 1)
+
+    svg.selectAll(".circles")
+    .data(data)
+    .join("circle") // enter append
+      .attr("class", "circles")
+      .attr("r", "3") // radius
+      .attr("fill", "#E30613")
+      .attr("cx", d=> x(d.Year) + x.bandwidth()/2)   // center x passing through your xScale
+      .attr("cy", d=> y2(parseFloat(d.Value2)) - 300)   // center y through your yScale
+
+
+// svg.selectAll(".label")        
+//     .data(data)
+//     .enter()
+//     .append("text")
+//     .attr("class","label")
+//     // .attr("x", (function(d) { return x(d.date); }  ))
+//     // .attr("y", function(d) { return y(d.value) - 20; })
+//     .attr("x", (function(d,i) { return x(d.date); }  ))
+//     .attr("y", function(d,i) { return y(d.value) + 20 })
+//     .style("color","#000000")
+//     .text(function(d) { return d.value; });     
+
+const format = d3.format(".1f");
+
+//labels
+svg.selectAll(".label") 
+.data(data)
+.join("text")
+    .text(function(d) { 
+        return (d.Value);
+    })
+    .attr("x", function(d){
+        return x(d.Year) + x.bandwidth()/2;
+    })
+    .attr("y", function(d){
+        return y(parseFloat(d.Value)) - 10;
+    })
+    .attr("font-family" , "Montserrat")
+    .style("opacity",0)
+    .attr("font-size" , "12px")
+    .attr("fill" , "black")
+    .attr("text-anchor", "middle")
+    .classed("label",true)
+
+
+    //labels Red dots
+    svg.selectAll(".labelRed") 
+    .data(data)
+    .join("text")
+        .text(function(d) { 
+            return (d.Value2);
+        })
+        .attr("x", function(d){
+            return x(d.Year) + x.bandwidth()/2;
+        })
+        .attr("y", function(d){
+            return y2(parseFloat(d.Value2)) - 310;
+        })
+        .attr("font-family" , "Montserrat")
+        .attr("font-size" , "12px")
+        .attr("fill" , "#E30613")
+        .attr("text-anchor", "middle")
+        .style("opacity",0)
+        .classed("labelRed",true)
+    
+
+
+    //title
+
+    
+    
 
 
 
@@ -81,7 +180,7 @@ svg.append("g")
             scroller
               .setup({
                 step: "#scrolly article .step",
-                offset: 0.2,
+                offset: 0.5,
                 // debug: true
               })
               .onStepEnter(handleStepEnter);
@@ -122,9 +221,33 @@ svg.append("g")
             .selectAll("rect")
             .transition()
             .duration(1000)
-            .attr("y", d => y(d.Value))
-            .attr("height", d => height - y(d.Value))
+            .attr("y", d => y(parseFloat(d.Value)))
+            .attr("height", d => height - y(parseFloat(d.Value)))
             .delay((d,i) => {console.log(i); return i*100})
+
+            d3.select("#chart5")
+            .select("svg")
+            .selectAll("path")
+            .transition()
+            .duration(1000)
+            .style("opacity",1)
+            .delay((d,i) => {console.log(i); return i*100})
+
+            d3.select("#chart5")
+                .select("svg")
+                .selectAll(".label")
+                .transition()
+                .duration(1000)
+                .style("opacity",1)
+                .delay((d,i) => {console.log(i); return i*130})
+
+                d3.select("#chart5")
+                .select("svg")
+                .selectAll(".labelRed")
+                .transition()
+                .duration(1000)
+                .style("opacity",1)
+                .delay((d,i) => {console.log(i); return i*130})
             }
 
 
@@ -135,9 +258,11 @@ svg.append("g")
                 .selectAll("rect")
                 .transition()
                 .duration(800)
-                .attr("y", d => y(d.Value))
-                .attr("height", d => height - y(d.Value))
+                .attr("y", d => y(parseFloat(d.Value)))
+                .attr("height", d => height - y(parseFloat(d.Value)))
                 .delay((d,i) => {console.log(i); return i*100})
+
+                
                 }
         
 }
