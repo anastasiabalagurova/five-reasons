@@ -1,13 +1,15 @@
 // set the dimensions and margins of the graph
 const margin = {top: 200, right: 30, bottom: 90, left: 0},
     width = 900 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    height = 750 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart5")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    // .attr("preserveAspectRatio", "xMinYMax meet")
+    // .attr("viewBox", "0 0" + " " + width + " " + height)
   .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -18,6 +20,7 @@ d3.csv("data/chart5.csv").then( function(data) {
   .append("h1")
   .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
   .classed("chartTitle", true);
+
 
 
 // Add Y axis
@@ -107,7 +110,7 @@ svg.selectAll(".label")
     .data(data)
     .join("text")
         .text(function(d) { 
-            return (d.Value2);
+            return (d.Value2 + "%");
         })
         .attr("x", function(d){
             return x(d.Year) + x.bandwidth()/2;
@@ -205,7 +208,7 @@ svg.append("g")
             d3.select("#chart5")
             .select("svg")
             .selectAll("path")
-            .classed("lineAnimation",true)
+            // .classed("lineAnimation",true)
             .transition()
             .duration(1000)
             .style("opacity",1)
@@ -229,6 +232,14 @@ svg.append("g")
             .select("h1")
             .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
             .classed("chartTitle", true);  
+
+            d3.select("#chart5")
+            .select("h1")
+            .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
+            .classed("chartTitle", true);  
+
+
+            d3.select(".chartNote").remove()
             }
 
 
@@ -238,6 +249,10 @@ svg.append("g")
         if(currentIndex === 2){
 
  
+          d3.select("#chart5")
+          .append("div")
+          .html("Выплаченные дивиденды указаны в млрд руб.")
+          .classed("chartNote", true);
 
 
           d3.select("#chart5")
@@ -269,7 +284,7 @@ svg.append("g")
             svg.select("path")
             .transition()
             .duration(1000)
-            .attr("transform","translate(0,-150)")
+            .attr("transform","translate(0,-130)")
 
 
 
@@ -278,14 +293,14 @@ svg.append("g")
             .transition()
             .duration(1000)
             .attr("y", function(d){
-              return y2(parseFloat(d.Value2)) - 360;
+              return y2(parseFloat(d.Value2)) - 340;
           })
 
 
             svg.selectAll(".circles")
             .transition()
             .duration(1000)
-            .attr("cy", d=> y2(parseFloat(d.Value2)) - 350) 
+            .attr("cy", d=> y2(parseFloat(d.Value2)) - 330) 
                 
                 }
         
