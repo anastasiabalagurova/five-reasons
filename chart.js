@@ -263,7 +263,8 @@ d3.csv("data/chart5.csv").then(function (data) {
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(x).tickSize(0))
         .selectAll("text")
-        .attr("transform", "translate(10,5)")
+        .attr("transform", "translate(10 5)")
+        .attr("id", (d,i) => {return "axisXlabel" + i})
         .style("text-anchor", "end")
         .style('font-family', 'Montserrat');
 
@@ -272,6 +273,8 @@ d3.csv("data/chart5.csv").then(function (data) {
       console.log(switcher)
 
 
+      d3.select("#axisXlabel13")
+      .attr("transform", "translate(20 5)")
     }
 
 
