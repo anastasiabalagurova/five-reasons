@@ -156,10 +156,13 @@ ul {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
+  padding-left: 0px;
+  padding-top:0px;
+  margin:0.2rem;
 }
 
 .tag {
-  padding: 0.3rem 0rem 0.3rem 0rem;
+  padding: 0.3rem 0.3rem 0.3rem 0rem;
   font-size: 0.8rem;
   font-weight: 400;
   width: max-content;
@@ -170,9 +173,14 @@ ul {
 .tagList {
 
   margin: 0 0 0 auto;
+  width: fit-content;
+  padding: 0.6rem 0rem 0.6rem 1rem;
+  border-radius: 10px;
   display: flex;
+  background-color: rgba(255, 255, 255, 0.95);
+  /*   background-color: rgba(255, 255, 255, 0.95); */
   position: sticky !important;
-  top: 0;
+  top: 1rem;
   justify-content: flex-end;
   z-index: 10;
 }
@@ -193,7 +201,7 @@ ul {
   align-items: center;
   /* position: sticky;
   top: 95vh; */
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
     position: sticky;
     width: fit-content;
