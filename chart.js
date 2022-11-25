@@ -24,7 +24,7 @@ d3.csv("data/chart5.csv").then( function(data) {
 // Add Y axis
 const y = d3.scaleLinear()
   .domain([0, 50])
-  .range([ height, 0]);
+  .range([ height, 100]);
 // svg.append("g")
 //   .call(d3.axisLeft(y));
 
@@ -46,9 +46,15 @@ svg.selectAll("mybar")
     .attr("x", d => x(d.Year))
     .attr("width", x.bandwidth())
     .attr("fill", "#E6E9EF")
-    // no bar at the beginning thus:
-    .attr("height", d => height - y(0)) // always equal to 0
     .attr("y", d => y(0))
+    .attr("height", d => height - y(0)) 
+    .transition()
+    .duration(800)
+    .attr("height", d => height - y(parseFloat(d.Value))) // always equal to 0
+    .attr("y", d => y(parseFloat(d.Value)))
+    .delay((d,i) => {console.log(i); return i*100})
+    
+
 
 
 //dots
@@ -57,7 +63,7 @@ var lineGenerator = d3.line()
     return x(d.Year)+ x.bandwidth()/2;
 })
 .y(function (d) {
-    return y2(parseFloat(d.Value2)) -200;
+    return y2(parseFloat(d.Value2)) - 180;
 });
 
 
@@ -70,15 +76,24 @@ svg.append("path")
     .attr("stroke", "#E30613")
     .style("opacity",0)
     .attr("stroke-width", 1)
+    .classed("lineAnimation", true)
+    .transition()
+    .duration(800)
+    .style("opacity",1)
+
+
+
 
     svg.selectAll(".circles")
     .data(data)
     .join("circle") // enter append
       .attr("class", "circles")
-      .attr("r", "0") // radius
+      .attr("r", "3") // radius
       .attr("fill", "#E30613")
+      .style("stroke-width", 1)
+      .attr("stroke","#fff")
       .attr("cx", d=> x(d.Year) + x.bandwidth()/2)   // center x passing through your xScale
-      .attr("cy", d=> y2(parseFloat(d.Value2)) - 200)   // center y through your yScale
+      .attr("cy", d=> y2(parseFloat(d.Value2)) - 180)   // center y through your yScale
 
  
 
@@ -101,6 +116,10 @@ svg.selectAll(".label")
     .attr("fill" , "black")
     .attr("text-anchor", "middle")
     .classed("label",true)
+    .transition()
+    .duration(1200)
+    .style("opacity",1)
+    .delay((d,i) => {console.log(i); return i*130})
 
 
    //think about rects under red labels
@@ -132,17 +151,39 @@ svg.selectAll(".label")
             return x(d.Year) + x.bandwidth()/2;
         })
         .attr("y", function(d){
-            return y2(parseFloat(d.Value2)) - 210;
+            return y2(parseFloat(d.Value2)) - 190;
         })
         .attr("font-family" , "Montserrat")
-        .attr("font-size" , "12px")
+        .attr("font-size" , "10px")
         .attr("fill" , "#E30613")
         .attr("text-anchor", "middle")
         .style("opacity",0)
         .classed("labelRed",true)
+        .attr("id",(d,i) => {return "labelRed" + i})
+        .transition()
+    .duration(1200)
+    .style("opacity",1)
+    .delay((d,i) => {console.log(i); return i*200})
 
 
-       
+
+       d3.select("#labelRed9")
+       .attr("transform","translate(-20 15)");
+
+
+
+       d3.select("#labelRed5")
+       .attr("transform","translate(-5 0)");
+
+       d3.select("#labelRed7")
+       .attr("transform","translate(3 0)");
+
+       d3.select("#labelRed8")
+       .attr("transform","translate(-3 0)");
+
+
+       d3.select("#labelRed13")
+       .attr("transform","translate(15 3)");
     
     
 
@@ -221,15 +262,13 @@ svg.append("g")
 
 
 
-        // if(currentIndex === 0){
-        //    document.getElementById("chart5").style.color="red";
-
-                // }
+    //     if(currentIndex === 0){
+       
         
+    // }
+    
+    
     }
-    
-    
-
     
 
 
