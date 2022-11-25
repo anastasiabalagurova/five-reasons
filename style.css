@@ -357,7 +357,7 @@ article {
 }
 
 .greyText {
-  background-color: var(--grey2);
+  background-color: #E6E9EF;
   padding: 2px 6px;
   margin: 0 0.2rem 0 0;
   border-radius: 4px;
