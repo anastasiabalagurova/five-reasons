@@ -11,7 +11,7 @@ html {
   --white: #ffffff;
   --red: #E30613;
   --grey: #020202;
-  --grey2: #E6E9EF;
+  --grey2: #a4a9b4;
   --lightgrey: #F6F8FB;
 }
 
@@ -402,3 +402,46 @@ article {
   }
 }
 
+
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip img {
+  padding: 0px 2px 0px 2px;
+  margin-bottom: -1px;
+}
+
+
+
+.tooltipWord{
+  border-bottom: 1px dashed #C4C7CC; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 18rem;
+  background-color: #C4C7CC;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: left;
+  padding: 10px 16px;
+  border-radius: 6px;
+  line-height:1.3;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6rem;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
