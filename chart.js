@@ -1,30 +1,23 @@
-// set the dimensions and margins of the graph
-const margin = {top: 200, right: 30, bottom: 90, left: 0},
-    width = 900 - margin.left - margin.right,
-    height = 750 - margin.top - margin.bottom;
+const margin = {top: 50, right: 25, bottom: 45, left: 0},
+      width = 700 - margin.left - margin.right,
+      height = 450 - margin.top - margin.bottom;
 
-    const svgWidth = width + margin.left + margin.right,
-    svgHeight = height + margin.top + margin.bottom;
+
 
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart5")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("viewBox", "0 0 " + svgWidth + " " + svgHeight)
-    // .attr("preserveAspectRatio", "xMinYMax meet")
-    // .attr("viewBox", "0 0" + " " + width + " " + height)
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .attr("viewport", "0 0" + " " + width + " " + height)
+  .attr("preserveAspectRatio", "xMinYMin meet")
   .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+  .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Parse the Data
 d3.csv("data/chart5.csv").then( function(data) {
 
-  d3.select("#chart5")
-  .append("h1")
-  .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
-  .classed("chartTitle", true);
 
 
 
@@ -155,6 +148,10 @@ svg.selectAll(".label")
 
 
     //title
+ 
+    // d3.select("#chartNote5")
+    // .html("Выплаченные дивиденды указаны в млрд руб.")
+
 
 
 //draw x axis
@@ -222,116 +219,14 @@ svg.append("g")
 
 
 
-        // remove is-active from all steps
-        // then add is-active to this step
-        
-        // steps.forEach(el => el.classList.remove('is-active'));
-        // el.classList.add('is-active');
 
-        if(currentIndex === 0){
+
+        // if(currentIndex === 0){
         //    document.getElementById("chart5").style.color="red";
-           
 
-            d3.select("#chart5")
-            .select("svg")
-            .selectAll("path")
-            // .classed("lineAnimation",true)
-            .transition()
-            .duration(1000)
-            .style("opacity",1)
-            .delay((d,i) => {console.log(i); return i*100})
-
-            d3.select("#chart5")
-            .select("svg")
-            .selectAll(".labelRed")
-            .transition()
-            .duration(1000)
-            .style("opacity",1)
-            .delay((d,i) => {console.log(i); return i*130})
-
-            svg.selectAll(".circles")
-            .transition()
-            .duration(1000)
-            .attr("r","3")
-            .delay((d,i) => {console.log(i); return i*130})
-
-            d3.select("#chart5")
-            .select("h1")
-            .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
-            .classed("chartTitle", true);  
-
-            d3.select("#chart5")
-            .select("h1")
-            .html("Динамика <span class='redText'>дивидендной доходности</span> на конец периода")
-            .classed("chartTitle", true);  
-
-
-            d3.select(".chartNote").remove()
-            }
-
-
-                     
-
-
-        if(currentIndex === 2){
-
- 
-          d3.select("#chart5")
-          .append("div")
-          .html("Выплаченные дивиденды указаны в млрд руб.")
-          .classed("chartNote", true);
-
-
-          d3.select("#chart5")
-            .select("svg")
-            .selectAll(".label")
-            .transition()
-            .duration(1000)
-            .style("opacity",1)
-            .delay((d,i) => {console.log(i); return i*130})
-
-
-          d3.select("#chart5")
-            .select("svg")
-            .selectAll("rect")
-            .transition()
-            .duration(800)
-            .attr("y", d => y(parseFloat(d.Value)))
-            .attr("height", d => height - y(parseFloat(d.Value)))
-            .delay((d,i) => {console.log(i); return i*100})
-
-
-  
-            d3.select("#chart5")
-            .select("h1")
-            .html("Динамика <span class='redText'>дивидендной доходности</span> и <span class='greyText'>выплаченных дивидендов</span> на конец периода")
-            .classed("chartTitle", true);
-
-
-            svg.select("path")
-            .transition()
-            .duration(1000)
-            .attr("transform","translate(0,-130)")
-
-
-
-
-            svg.selectAll(".labelRed")
-            .transition()
-            .duration(1000)
-            .attr("y", function(d){
-              return y2(parseFloat(d.Value2)) - 340;
-          })
-
-
-            svg.selectAll(".circles")
-            .transition()
-            .duration(1000)
-            .attr("cy", d=> y2(parseFloat(d.Value2)) - 330) 
-                
-                }
+                // }
         
-}
+    }
     
     
 

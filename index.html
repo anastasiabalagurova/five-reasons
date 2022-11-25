@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <div class="content">
     <div class="container container--wide">
         <div class="back">
             <img src="images/icon.svg" id="backIcon">
@@ -27,8 +28,8 @@
 <div class = "menuTemp"><img src="images/menuTemp.jpg" width="100%"></div>
         <section id="intro">
             <div class="intLogo"><img src="images/logo.svg"></div>
-            <div class="intTitle">Пять причин инвестировать в Магнит</div>
-            <div class="intBackground"></div>
+            <div class="intTitle">5 причин инвестировать в «Магнит»</div>
+            <div class="imageContainer"><img src="images/background.png" class="backgroundImage"></div>
         </section>
         <div class="containerProject">
         <div class="tagList">
@@ -205,42 +206,45 @@
         </section>
 
         <section id="scrolly">
-            <div class="sticky-thing">
-                <div class="chart" id="chart5"></div>
+            <div class="sticky-thing" id = "sticky5">
+                <div class="chartTitle" id="chartTitle5"><span class='greyText'>Выплаченных дивидендов, млрд руб.</span> и <span class='redText'>дивидендная доходность на конец периода, %</span></div>
+                                <div class="chart" id="chart5"></div>
             </div>
             <article>
 
 
                 <div class="step" data-step="9">
                     <p>Открытие качественных торговых объектов как способ повышения окупаемости инвестиций</p>
+                </div>
+                <div class="step" data-step="1">
                     <p>Поддержание показателя «Чистый долг / EBITDA» на оптимальном уровне около 1,5х (МСБУ 17)</p>
+
+                </div>
+                <div class="step" data-step="1">
                     <p>Четкий план по улучшению оборотного капитала с акцентом на оптимизацию оборачиваемости запасов
                         в днях</p>
                 </div>
+
+
+                <div class="step" data-step="1">
+                    <p>Создание дополнительной стоимости для акционеров для стабильно высоких дивидендных выплат</p>
+                </div>
                 <div class="step" data-step="1">
                     <div class="factoid">
-                        <div class="number">1,5<span class="unit">x</span></div>
+                        <div class="number">64,2<span class="unit">млрд руб. </span></div>
+                        <p>чистый денежный поток в 2021 г., без учета приобретения «Дикси»</p>
+                        <div class="number secondNumber">1,5<span class="unit">x</span></div>
                         <p>уровень долговой нагрузки (МСБУ 17) на 31 декабря 2021 г.</p>
-                        <div class="number secondNumber">64,2<span class="unit">млрд ₽ </span></div>
-                        <p>чистый денежный поток в 2021 г., без учета приобретения «Дикси»</p>
                     </div>
                 </div>
-
-
-                <div class="step" data-step="1">
-                    <p>Создание дополнительной стоимости для акционеров для стабильно высоких <span class = "greyText">дивидендных выплат</span></p>
-                </div>
-
             </article>
-
         </section>
     </div>
-
         <script src="script.js"></script>
         <script src="chart.js"></script>
     </div>
     <div class = "footerTemp"><img src="images/footerTemp.png" width="100%"></div>
-
+</div>
 </body>
 
 </html>
