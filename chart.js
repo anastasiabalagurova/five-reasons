@@ -30,7 +30,7 @@ d3.csv("data/chart5.csv").then(function (data) {
 
   // using d3 for convenience
   var body = document.querySelector("body");
-  var scrolly = body.querySelector("#scrolly");
+  var scrolly = body.querySelector(".scrolly");
   var sticky = scrolly.querySelector(".sticky-thing");
   var article = scrolly.querySelector("article");
   var steps = article.querySelectorAll(".step");
@@ -51,7 +51,7 @@ d3.csv("data/chart5.csv").then(function (data) {
   function init() {
     scroller
       .setup({
-        step: "#scrolly article .step",
+        step: ".scrolly article .step",
         offset: 0.5,
         // debug: true
       })
