@@ -132,7 +132,7 @@ body {
 }
 
 #chapter5  {
-  background-image: url("images/chapter5.png");
+  /* background-image: url("images/chapter5.png"); */
 }
 
 .axisLeft{
@@ -140,6 +140,9 @@ body {
   background-color: #000;
 }
 
+.chapterImage{
+  position: relative;
+}
 
 .chapterTitle {
   font-family: 'Montserrat';
@@ -165,6 +168,22 @@ body {
   width: 40rem;
 }
 
+
+.chapterSvg{
+  position: absolute;
+  top: -3.7rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 59.3rem;
+}
+.chapterSvg object{
+ width: 100%;
+ height: auto;
+}
+.svgIcon{
+  opacity: 0;
+  transition: opacity ease 1.5s;
+}
 
 
 /* fixed navigation elements */
