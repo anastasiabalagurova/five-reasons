@@ -110,16 +110,9 @@ d3.select("#labelCountryRed7")
     d3.select("#barCountry7")
     .attr("fill", "#E30613");
 
-
-
-
-
 })
 }
   
-  
-
-
 
   function drawChart2(){
 
