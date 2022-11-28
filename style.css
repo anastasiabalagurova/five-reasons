@@ -107,7 +107,6 @@ body {
   display: flex;
   position: inherit;
   top: 0;
-  background-image: url("images/chapter5.png");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -115,6 +114,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+#chapter1 {
+  background-image: url("images/chapter1.png");
+}
+
+#chapter2 {
+  background-image: url("images/chapter2.png");
+}
+
+#chapter3 {
+  background-image: url("images/chapter3.png");
+}
+
+#chapter4 {
+  background-image: url("images/chapter4.png");
+}
+
+#chapter5  {
+  background-image: url("images/chapter5.png");
+}
+
+.axisLeft{
+  color: #000;
+  background-color: #000;
+}
+
 
 .chapterTitle {
   font-family: 'Montserrat';
@@ -140,12 +165,6 @@ body {
   width: 40rem;
 }
 
-.chapterImage {
-  display: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: -1;
-}
 
 
 /* fixed navigation elements */
@@ -167,8 +186,12 @@ ul {
   font-weight: 400;
   width: max-content;
   font-family: 'Montserrat';
+  text-decoration: none;
 }
 
+li{
+  padding: 0.2rem 0;
+}
 
 .tagList {
 
@@ -180,7 +203,7 @@ ul {
   background-color: rgba(255, 255, 255, 0.95);
   /*   background-color: rgba(255, 255, 255, 0.95); */
   position: sticky !important;
-  top: 1rem;
+  top: 0;
   justify-content: flex-end;
   z-index: 10;
 }
@@ -224,7 +247,7 @@ ul {
 /* scrolly thingy */
 
 
-#scrolly {
+.scrolly {
   width:100%;
   position: relative;
   display: -webkit-box;
@@ -232,7 +255,7 @@ ul {
   display: flex;
 }
 
-#scrolly>* {
+.scrolly>* {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -270,10 +293,7 @@ article {
   z-index: 10;
 }
 
-#chart5 {
-  /* background-color: #01080D; */
 
-}
 
 
 
@@ -286,13 +306,13 @@ article {
 
 .step {
   position: relative;
-  margin-bottom: 20rem;
+  margin-bottom: 5rem;
   /* background-color: var(--white); */
   color: #000;
   border-radius: 4px;
   padding: 2rem 1.4rem 2.4rem 1.8rem;
   gap: 10px;
-  margin-top: 10rem;
+  margin-top: 5rem;
   font-family: 'Montserrat';
   font-size: 1rem;
   line-height: 150%;
@@ -308,7 +328,7 @@ article {
 }
 
 .step:last-child {
-    margin-bottom: 10vh!important;
+    margin-bottom: 20vh!important;
   }
 
 /* factoids */
@@ -360,6 +380,20 @@ article {
   color: var(--red);
 }
 
+
+.labelRed{
+ font-family: 'Montserrat';
+ font-size: 10px;
+  fill:#E30613;
+ text-anchor:middle;
+}
+
+.labelGrey{
+ font-family: 'Montserrat';
+ font-size: 10px;
+  fill: var(--grey);
+ text-anchor:middle;
+}
 
 .redText {
   background-color: var(--red);
@@ -420,7 +454,6 @@ article {
 /* Tooltip */
 .tooltip {
   position: relative;
-  display: inline-block;
 }
 
 .tooltip img {
