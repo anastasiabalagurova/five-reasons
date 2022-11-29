@@ -10,7 +10,7 @@ html {
   --black: #3b3b3b;
   --white: #ffffff;
   --red: #E30613;
-  --grey: #020202;
+  --grey: #E6E9EF;
   --grey2: #a4a9b4;
   --lightgrey: #F6F8FB;
 }
@@ -135,11 +135,6 @@ body {
   /* background-image: url("images/chapter5.png"); */
 }
 
-.axisLeft{
-  color: #000;
-  background-color: #000;
-}
-
 .chapterImage{
   position: relative;
 }
@@ -206,6 +201,7 @@ ul {
   width: max-content;
   font-family: 'Montserrat';
   text-decoration: none;
+  color: var(--grey2);
 }
 
 li{
@@ -220,29 +216,25 @@ li{
   border-radius: 10px;
   display: flex;
   background-color: rgba(255, 255, 255, 0.95);
-  /*   background-color: rgba(255, 255, 255, 0.95); */
   position: sticky !important;
   top: 0;
   justify-content: flex-end;
   z-index: 10;
 }
 
-.tagActive {
+/* .tagActive {
   color: var(--red);
 }
 
 .tagInactive {
-  color: var(--grey);
-  opacity: 0.4;
-}
+  color: var(--grey2);
+} */
 
 
 .back {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* position: sticky;
-  top: 95vh; */
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
     position: sticky;
@@ -265,7 +257,6 @@ li{
 
 /* scrolly thingy */
 
-
 .scrolly {
   width:100%;
   position: relative;
@@ -284,7 +275,6 @@ article {
   position: relative;
   padding: 2rem 0rem 0 0;
   max-width: 35%;
-  /* margin-bottom: 20rem; */
 }
 
 
@@ -313,20 +303,16 @@ article {
 }
 
 
-
-
-
 .sticky-thing p {
   padding: 1rem;
   font-size: 8rem;
   font-weight: 900;
-  color: #fff;
+  color: var(--white);
 }
 
 .step {
   position: relative;
   margin-bottom: 5rem;
-  /* background-color: var(--white); */
   color: #000;
   border-radius: 4px;
   padding: 2rem 1.4rem 2.4rem 1.8rem;
@@ -394,23 +380,32 @@ article {
 }
 
 /* charts */
-
 .mybar {
   color: var(--red);
 }
 
+.chartNote {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  color: var(--grey2);
+  font-size: 0.9rem;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
 
 .labelRed{
  font-family: 'Montserrat';
  font-size: 10px;
-  fill:#E30613;
+  fill:var(--red);
  text-anchor:middle;
 }
 
 .labelGrey{
  font-family: 'Montserrat';
  font-size: 10px;
-  fill: var(--grey);
+  fill: var(--black);
  text-anchor:middle;
 }
 
@@ -423,7 +418,7 @@ article {
 }
 
 .greyText {
-  background-color: #E6E9EF;
+  background-color: var(--grey);
   padding: 2px 6px;
   margin: 0 0.2rem 0 0;
   border-radius: 4px;
@@ -440,23 +435,18 @@ article {
   padding-bottom: 1rem;
 }
 
-/* .chartNote {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  color: var(--grey);
-  opacity: 0.4;
-  font-size: 0.95rem;
-  margin-top: 0.4rem;
-  margin-bottom: 1rem;
-} */
+#chartTitle2{
+  padding-bottom: 0.1rem;
+}
 
+.axisLeft{
+  color: var(--black);
+  background-color: var(--black);
+}
 
 
 /* path animation */
-
 .lineAnimation {
-  /* animation: drawLine 7s linear; */
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: dash 4s linear forwards;
@@ -471,6 +461,7 @@ article {
 
 
 /* Tooltip */
+
 .tooltip {
   position: relative;
 }
@@ -480,27 +471,24 @@ article {
   margin-bottom: -1px;
 }
 
-
-
 .tooltipWord{
-  border-bottom: 1px dashed #C4C7CC; /* If you want dots under the hoverable text */
+  border-bottom: 1px dashed var(--grey2); 
 }
 
-/* Tooltip text */
+
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 18rem;
-  background-color: #C4C7CC;
+  background-color: var(--grey2);
   font-size: 0.9rem;
-  color: #fff;
+  color: var(--white);
   text-align: left;
   padding: 10px 16px;
   border-radius: 6px;
   line-height:1.3;
   font-weight: 400;
 
-   
-  /* Position the tooltip text - see examples below! */
+
   position: absolute;
   top: 100%;
   left: 50%;
@@ -515,7 +503,32 @@ article {
   }
 
 
-/* Show the tooltip text when you mouse over the tooltip container */
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+
+.tip{
+  background: var(--white);
+  border: 0;
+  border-radius: 8px;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 400;
+  height: fit-content;
+  padding: 2px;
+  pointer-events: none;
+  position: absolute;
+  text-align: left;
+  width: fit-content;
+  box-shadow: inset 2px 2px 2px 0px rgba(155, 159, 211, 0.05),
+  7px 7px 20px 0px rgba(0,0,0,.07),
+  4px 4px 5px 0px rgba(0,0,0,.07);
+}
+
+.toopltipNumber{
+  padding-left: 30px;
+  font-weight: 600;
+}
+

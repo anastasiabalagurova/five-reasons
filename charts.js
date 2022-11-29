@@ -7,18 +7,25 @@ const margin = {
   width = 700 - margin.left - margin.right,
   height = 450 - margin.top - margin.bottom;
 
-
-
-  function drawChart1(){
-
-    const svg = d3.select("#chart1")
+  function drawSvg(){
+  for(i=1;i<6;i++){
+    d3.select(`#chart${i}`)
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .attr("viewport", "0 0" + " " + width + " " + height)
     .attr("preserveAspectRatio", "xMinYMin meet")
+  }
+}
+
+
+  function drawChart1(){
+
+    const svg = d3.select("#chart1")
+    .select("svg")
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
+  
   
 // Parse the Data
 d3.csv("data/chart1.csv").then(function (data) {
@@ -110,6 +117,9 @@ d3.select("#labelCountryRed7")
     d3.select("#barCountry7")
     .attr("fill", "#E30613");
 
+    d3.selectAll(".tag").style("color","var(--grey2)")
+    d3.select("#tag1").style("color","var(--red)")
+
 })
 }
   
@@ -117,11 +127,7 @@ d3.select("#labelCountryRed7")
   function drawChart2(){
 
     const svg = d3.select("#chart2")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("viewport", "0 0" + " " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMin meet")
+    .select("svg")
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
   
@@ -196,7 +202,6 @@ svg.selectAll(".circlesRed")
   .style("opacity", 1)
   .attr("r", "3")
   .delay((d, i) => {
-    console.log(i);
     return i * 130
   })
 
@@ -232,7 +237,6 @@ svg.selectAll(".circlesGrey")
   .style("opacity", 1)
   .attr("r", "3")
   .delay((d, i) => {
-    console.log(i);
     return i * 130
   })
 
@@ -259,7 +263,6 @@ svg.selectAll(".labelRed")
   .duration(1200)
   .style("opacity", 1)
   .delay((d, i) => {
-    console.log(i);
     return i * 200
   })
 
@@ -286,7 +289,6 @@ svg.selectAll(".labelGrey")
 .duration(1200)
 .style("opacity", 1)
 .delay((d, i) => {
-  console.log(i);
   return i * 200
 })
 
@@ -309,6 +311,9 @@ d3.select("#labelRed2")
     d3.select("#labelGrey2")
     .attr("transform", "translate(-2 -7)");
 
+    d3.selectAll(".tag").style("color","var(--grey2)")
+    d3.select("#tag2").style("color","var(--red)")
+
 })
 }
 
@@ -316,13 +321,10 @@ d3.select("#labelRed2")
   function drawChart3(){
 
     const svg = d3.select("#chart3")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("viewport", "0 0" + " " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMin meet")
+    .select("svg")
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
+  
   
   // Parse the Data
     d3.csv("data/chart3.csv").then(function (data) {
@@ -341,7 +343,42 @@ d3.select("#labelRed2")
         .padding(0.2)
     
 
+// tooltip
 
+
+  // const tooltip = d3.select("#chart3")
+    // .append("div")
+    // .html("hello")
+    // .style("opacity", 0)
+    // .attr("class", "chartTooltip")
+
+  // // Three function that change the tooltip when user hover / move / leave a cell
+  // const mouseover = function(event, d) {
+  //   // const subgroupName = d3.select(this.parentNode).datum().key;
+  //   const gross = d.Value2;
+  //   tooltip
+  //       .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + gross + "</span")
+  //       .style("opacity", 1)
+
+  // }
+  // const mousemove = function(event, d) {
+  //   tooltip.style("transform","translateY(-55%)")
+  //          .style("left",(event.x)/2+"px")
+  //          .style("top",(event.y)/2- height +"px")
+  // }
+  // const mouseleave = function(event, d) {
+  //   tooltip
+  //     .style("opacity", 0)
+  // }
+
+
+  const tip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "tip")
+  .style("position", "fixed")
+  .style("z-index", "10")
+  .style("opacity", "0")
 
       // Bars
       svg.selectAll("mybar")
@@ -352,15 +389,26 @@ d3.select("#labelRed2")
         .attr("fill", "#E6E9EF")
         .attr("y", d => y(16000))
         .attr("height", d => height - y(16000))
-        .transition()
-        .duration(500)
-        .style("opacity", 1)
+        .on("mouseover", function (event, d) {
+          d3.select(".tip")
+            .html("Количество открытых магазинов (gross)" +  "<span class = 'toopltipNumber'>" + d.Value2 + "</span>")
+            .style("left", `${event.clientX}px`)
+            .style("top", `${event.clientY}px`)
+            .style("opacity", 1);
+        })
+        .on("mouseout", function () {
+          tip.style("opacity", 0);
+        })
+        
+
+        // .transition()
+        // .duration(500)
+        // .style("opacity", 1)
         .transition()
         .duration(800)
         .attr("height", d => height - y(parseFloat(d.Value))) // always equal to 0
         .attr("y", d => y(parseFloat(d.Value)))
         .delay((d, i) => {
-          console.log(i);
           return i * 100
         })
 
@@ -389,7 +437,6 @@ d3.select("#labelRed2")
      .duration(1200)
      .style("opacity", 1)
      .delay((d, i) => {
-       console.log(i);
        return i * 130
      })
        
@@ -402,11 +449,11 @@ d3.select("#labelRed2")
    .attr("id", (d,i) => {return "axisXlabel" + i})
    .style("text-anchor", "end")
    .style('font-family', 'Montserrat');
-     
 
 
-
-
+   //change color of the active tag
+   d3.selectAll(".tag").style("color","var(--grey2)")
+   d3.select("#tag3").style("color","var(--red)")
 
     })
   }
@@ -415,13 +462,10 @@ d3.select("#labelRed2")
 function drawChart4(){
 
   const svg = d3.select("#chart4")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .attr("viewport", "0 0" + " " + width + " " + height)
-  .attr("preserveAspectRatio", "xMinYMin meet")
+  .select("svg")
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
+
 
 // Parse the Data
   d3.csv("data/chart4.csv").then(function (data) {
@@ -455,7 +499,6 @@ function drawChart4(){
      .attr("height", d => height - y(parseFloat(d.Value))) // always equal to 0
      .attr("y", d => y(parseFloat(d.Value)))
      .delay((d, i) => {
-       console.log(i);
        return i * 100
      })
 
@@ -482,7 +525,6 @@ function drawChart4(){
   .duration(1200)
   .style("opacity", 1)
   .delay((d, i) => {
-    console.log(i);
     return i * 130
   })
     
@@ -496,20 +538,20 @@ svg.append("g")
 .style("text-anchor", "end")
 .style('font-family', 'Montserrat');
   
+
+d3.selectAll(".tag").style("color","var(--grey2)")
+d3.select("#tag4").style("color","var(--red)")
+
   })
-
-
 }
+
+
 
 
 function drawChart5(){
 
   const svg = d3.select("#chart5")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .attr("viewport", "0 0" + " " + width + " " + height)
-  .attr("preserveAspectRatio", "xMinYMin meet")
+  .select("svg")
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -520,8 +562,6 @@ function drawChart5(){
     const y = d3.scaleLinear()
     .domain([0, 50])
     .range([height, 100]);
-  // svg.append("g")
-  //   .call(d3.axisLeft(y));
 
   // X axis
   const x = d3.scaleBand()
@@ -534,14 +574,13 @@ function drawChart5(){
     .domain([0, 15])
     .range([height, 0]);
 
-
-
   // Bars
-  svg.selectAll("mybar")
+  svg.selectAll("#mybar5")
     .data(data)
     .join("rect")
     .attr("x", d => x(d.Year))
     .attr("width", x.bandwidth())
+    .attr("id","mybar5")
     .attr("fill", "#E6E9EF")
     .attr("y", d => y(0))
     .attr("height", d => height - y(0))
@@ -550,9 +589,10 @@ function drawChart5(){
     .attr("height", d => height - y(parseFloat(d.Value))) // always equal to 0
     .attr("y", d => y(parseFloat(d.Value)))
     .delay((d, i) => {
-      console.log(i);
       return i * 100
     })
+    
+
 
   //dots
   var lineGenerator = d3.line()
@@ -567,16 +607,13 @@ function drawChart5(){
   //Red line
   svg.append("path")
     .datum(data)
-    .attr("class", "line")
+    .attr("class", "Redline")
     .attr("d", lineGenerator)
     .attr("fill", "none")
     .attr("stroke", "#E30613")
-    .style("opacity", 0)
     .attr("stroke-width", 1)
-    .classed("lineAnimation", true)
-    .transition()
-    .duration(800)
-    .style("opacity", 1)
+    .classed("lineAnimation",true)
+    
 
   svg.selectAll(".circles")
     .data(data)
@@ -594,7 +631,6 @@ function drawChart5(){
     .style("opacity", 1)
     .attr("r", "3")
     .delay((d, i) => {
-      console.log(i);
       return i * 130
     })
 
@@ -621,7 +657,6 @@ function drawChart5(){
     .duration(1200)
     .style("opacity", 1)
     .delay((d, i) => {
-      console.log(i);
       return i * 130
     })
 
@@ -687,18 +722,19 @@ svg.append("g")
 
 d3.select("#axisXlabel13")
     .attr("transform", "translate(20 5)")
-  switcher = true;
-  console.log(switcher)
+
+
+  d3.selectAll(".tag").style("color","var(--grey2)")
+  d3.select("#tag5").style("color","var(--red)")
   
   })
 }
 
 
-drawChart1()
-drawChart2()
-drawChart3()
-drawChart4()
-drawChart5()
+
+
+
+drawSvg()
 
 
 

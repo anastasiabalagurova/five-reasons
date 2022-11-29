@@ -1,0 +1,68 @@
+let switcher1 = false, 
+    switcher2 = false,
+    switcher3 = false,
+    switcher4 = false,
+    switcher5 = false;
+
+    let state = 0;
+
+
+// Parse the Data
+d3.csv("data/chart5.csv").then(function (data) {
+
+  // using d3 for convenience
+  var body = document.querySelector("body");
+  var scrolly = body.querySelector(".scrolly");
+  var sticky = scrolly.querySelector(".sticky-thing");
+  var article = scrolly.querySelector("article");
+  var steps = article.querySelectorAll(".step");
+
+  // initialize the scrollama
+  var scroller = scrollama();
+
+  function init() {
+    scroller
+      .setup({
+        step: ".scrolly article .step",
+        offset: 0.5,
+      })
+      .onStepEnter(handleStepEnter);
+
+    // setup resize event
+    window.addEventListener("resize", scroller.resize);
+  }
+  // kick things off
+  init();
+
+
+
+
+  function handleStepEnter(response) {
+    let currentIndex = response.index;
+    let currentDirection = response.direction;
+
+
+
+}
+
+
+})
+
+
+
+function onVisible(element, callback) {
+  new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+    if(entry.intersectionRatio > 0) {
+      callback(element);
+      observer.disconnect();
+    }
+    });
+  }).observe(element);
+  }
+
+onVisible(document.querySelector("#chart1"), () =>  drawChart1());
+onVisible(document.querySelector("#chart2"), () =>  drawChart2());
+onVisible(document.querySelector("#chart3"), () =>  drawChart3());	  
+onVisible(document.querySelector("#chart4"), () =>  drawChart4());
+onVisible(document.querySelector("#chart5"), () =>  drawChart5());
