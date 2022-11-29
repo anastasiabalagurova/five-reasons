@@ -41,6 +41,17 @@ d3.csv("data/chart5.csv").then(function (data) {
     let currentIndex = response.index;
     let currentDirection = response.direction;
 
+    console.log(currentDirection)
+
+    if(currentIndex == 0 && currentDirection == "up"){
+      returnChart1(1)
+
+    }
+
+    if(currentIndex == 1){
+      updateChart1()
+      
+    }
 
 
 }
@@ -66,3 +77,5 @@ onVisible(document.querySelector("#chart2"), () =>  drawChart2());
 onVisible(document.querySelector("#chart3"), () =>  drawChart3());	  
 onVisible(document.querySelector("#chart4"), () =>  drawChart4());
 onVisible(document.querySelector("#chart5"), () =>  drawChart5());
+
+

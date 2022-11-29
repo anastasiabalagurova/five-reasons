@@ -1,5 +1,5 @@
 const margin = {
-    top: 50,
+    top: 20,
     right: 25,
     bottom: 45,
     left: 0
@@ -17,6 +17,7 @@ const margin = {
     .attr("preserveAspectRatio", "xMinYMin meet")
   }
 }
+
 
 
   function drawChart1(){
@@ -52,6 +53,7 @@ const y = d3.scaleBand()
 svg.selectAll("myRect")
 .data(data)
 .join("rect")
+.attr("class","myRect")
 .attr("x", x(0)+100)
 .attr("y", d => y(d.Country))
 .attr("width", d => x(0))
@@ -101,11 +103,19 @@ svg.selectAll(".labelCountry")
  return i * 130
 })
  
-//draw Y axis
-svg.append("g")
+// //draw Y axis
+var yAxis  = svg.append("g")
+.attr("class","yaxis")
 .attr("transform", "translate(100 0)")
 .call(d3.axisLeft(y).tickSize(0))
 .style("font-family","Montserrat")
+
+
+d3.select("#chart1")
+.selectAll(".tick")
+.selectAll("text")
+.attr("transform","translate(-3 0)")
+
 
 
 
@@ -120,9 +130,106 @@ d3.select("#labelCountryRed7")
     d3.selectAll(".tag").style("color","var(--grey2)")
     d3.select("#tag1").style("color","var(--red)")
 
+
+    
+    
+
+
+
+
+
+
 })
 }
   
+function updateChart1() {
+ d3.csv("data/chart1.csv").then(function (data) {
+
+d3.select("#chartTitle1")
+.html("Доля топ-5 ритейлеров, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, Infoline, анализ Компании, 2021</span></span>")
+
+  const xSorted = d3.scaleLinear()
+  .domain([0,100])
+  .range([0,width-100]);
+
+  const ySorted = d3.scaleBand()
+  .range([0,height])
+  .domain((data.sort((a,b) => d3.descending(a.Value2, b.Value2)).map(d => d.Country))) 
+  .padding(0.1);
+
+ const svg = d3.select("#chart1")
+    .selectAll(".myRect")
+    .transition()
+    .duration(800)
+    .attr("width", d => xSorted(d.Value2)) 
+    .attr("y", (d) => ySorted(d.Country))
+
+
+    d3.selectAll(".labelCountry")
+    .text(function (d) {
+      return (d.Value2) +"%";
+     })
+    .transition()
+    .duration(800)
+    .attr("x", function (d) {
+      return xSorted(parseFloat(d.Value2)) + 120;
+     })
+    .attr("y", (d,i) => ySorted(d.Country) + ySorted.bandwidth() / 2 +3)
+    
+    
+
+  d3.select(".yaxis")
+    .transition()
+    .duration(800)
+    .call(d3.axisLeft(ySorted).tickSize(0))    
+ })
+     }
+
+ function returnChart1() {
+      d3.csv("data/chart1.csv").then(function (data) {
+     
+     d3.select("#chartTitle1")
+     .html("Доля современного ритейла, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, 2021</span></span>")
+     
+         // Add X axis
+  const x = d3.scaleLinear()
+  .domain([0,100])
+  .range([0,width-100]);
+
+// Y axis
+const y = d3.scaleBand()
+  .range([0,height])
+  .domain(data.map(d => d.Country))
+  .padding(0.1);
+ 
+     
+      const svg = d3.select("#chart1")
+         .selectAll(".myRect")
+         .transition()
+         .duration(800)
+         .attr("width", d => x(d.Value)) // always equal to 0
+         .attr("y", (d) => y(d.Country))
+     
+     
+         d3.selectAll(".labelCountry")
+         .text(function (d) {
+           return (d.Value) +"%";
+          })
+         .transition()
+         .duration(800)
+         .attr("x", function (d) {
+           return x(parseFloat(d.Value)) + 120;
+          })
+         .attr("y", (d) => y(d.Country) + y.bandwidth() / 2 +3)
+         
+         
+     
+       d3.select(".yaxis")
+         .transition()
+         .duration(800)
+         .call(d3.axisLeft(y).tickSize(0))    
+      })
+          }
 
   function drawChart2(){
 
@@ -413,6 +520,13 @@ d3.select("#labelRed2")
         })
 
    
+        //interactivity icon
+       d3.select("#chart3")
+        .append("div")
+        .html("<img src='images/iconInt.svg'><span class='intLabelText'>Интерактивный график</span>")
+        .classed("interactivitylabel",true)
+
+     
 
         //labels
      svg.selectAll(".label")
@@ -553,7 +667,7 @@ function drawChart5(){
   const svg = d3.select("#chart5")
   .select("svg")
   .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
+  .attr("transform", `translate(${margin.left},${margin.top+20})`);
 
 // Parse the Data
   d3.csv("data/chart5.csv").then(function (data) {
