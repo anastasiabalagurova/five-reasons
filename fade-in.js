@@ -10,6 +10,7 @@ document.querySelector('.chapterSvg').addEventListener('load', function(){
 			if (entry.isIntersecting) {
 				svgIcons.forEach((element, index) => {
 					element.style.opacity = 1;
+					element.style.transform = 'translateY(0rem)';
 				});
 				observer.unobserve(document.querySelector('.chapterSvg'));
 			}
