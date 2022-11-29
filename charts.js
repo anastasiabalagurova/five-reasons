@@ -523,7 +523,7 @@ d3.select("#labelRed2")
         //interactivity icon
        d3.select("#chart3")
         .append("div")
-        .html("<img src='images/iconInt.svg'><span class='intLabelText'>Интерактивный график</span>")
+        .html("<img src='images/iconInt.svg'><span class='intLabelText'>Наведите на график</span>")
         .classed("interactivitylabel",true)
 
      
