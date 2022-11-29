@@ -492,9 +492,9 @@ article {
 
   position: absolute;
   top: 100%;
-  left: 50%;
-  margin-left: -6rem;
-  z-index: 1;
+  left: 20%;
+  /* margin-left: -6rem; */
+  z-index: 20;
 }
 
   .tooltip .source {
