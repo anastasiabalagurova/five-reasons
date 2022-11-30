@@ -677,6 +677,10 @@ function drawChart5(){
     .domain([0, 50])
     .range([height, 100]);
 
+    const y2 = d3.scaleLinear()
+    .domain([0,9])
+    .range([height, 150]);
+
   // X axis
   const x = d3.scaleBand()
     .range([0, width])
@@ -684,9 +688,6 @@ function drawChart5(){
     .padding(0.2)
 
 
-  const y2 = d3.scaleLinear()
-    .domain([0, 15])
-    .range([height, 0]);
 
   // Bars
   svg.selectAll("#mybar5")
@@ -714,7 +715,7 @@ function drawChart5(){
       return x(d.Year) + x.bandwidth() / 2;
     })
     .y(function (d) {
-      return y2(parseFloat(d.Value2)) - 180;
+      return y2(parseFloat(d.Value2)) - 160
     });
 
 
@@ -739,7 +740,7 @@ function drawChart5(){
     .style("stroke-width", 1)
     .attr("stroke", "#fff")
     .attr("cx", d => x(d.Year) + x.bandwidth() / 2) // center x passing through your xScale
-    .attr("cy", d => y2(parseFloat(d.Value2)) - 180) // center y through your yScale
+    .attr("cy", d => y2(parseFloat(d.Value2)) - 160) // center y through your yScale
     .transition()
     .duration(1600)
     .style("opacity", 1)
@@ -753,7 +754,7 @@ function drawChart5(){
     .data(data)
     .join("text")
     .text(function (d) {
-      return (d.Value);
+      return (d.Value3);
     })
     .attr("x", function (d) {
       return x(d.Year) + x.bandwidth() / 2;
@@ -779,13 +780,13 @@ function drawChart5(){
     .data(data)
     .join("text")
     .text(function (d) {
-      return (d.Value2 + "%");
+      return (d.Value4 + "%");
     })
     .attr("x", function (d) {
       return x(d.Year) + x.bandwidth() / 2;
     })
     .attr("y", function (d) {
-      return y2(parseFloat(d.Value2)) - 190;
+      return y2(parseFloat(d.Value2)) - 170;
     })
     .attr("font-family", "Montserrat")
     .attr("font-size", "10px")
@@ -834,8 +835,7 @@ svg.append("g")
 .style('font-family', 'Montserrat');
 
 
-d3.select("#axisXlabel13")
-    .attr("transform", "translate(20 5)")
+
 
 
   d3.selectAll(".tag").style("color","var(--grey2)")

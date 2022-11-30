@@ -379,6 +379,10 @@ article {
   font-size: 1.3rem;
 }
 
+#unit1{
+  padding-left: 0.15rem;
+}
+
 /* charts */
 .mybar {
   color: var(--red);
