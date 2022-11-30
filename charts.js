@@ -439,7 +439,7 @@ d3.select("#labelRed2")
 
         // Add Y axis
         const y = d3.scaleLinear()
-        .domain([16000,26077])
+        .domain([0,26077])
         .range([height, 0]);
 
     
@@ -494,11 +494,11 @@ d3.select("#labelRed2")
         .attr("x", d => x(d.Year))
         .attr("width", x.bandwidth())
         .attr("fill", "#E6E9EF")
-        .attr("y", d => y(16000))
-        .attr("height", d => height - y(16000))
+        .attr("y", d => y(0))
+        .attr("height", d => height - y(0))
         .on("mouseover", function (event, d) {
           d3.select(".tip")
-            .html("Количество открытых магазинов (gross)" +  "<span class = 'toopltipNumber'>" + d.Value2 + "</span>")
+            .html("Количество открытых магазинов (gross)" +  "<span class = 'toopltipNumber'>" + d.Value4 + "</span>")
             .style("left", `${event.clientX}px`)
             .style("top", `${event.clientY}px`)
             .style("opacity", 1);
@@ -533,7 +533,7 @@ d3.select("#labelRed2")
      .data(data)
      .join("text")
      .text(function (d) {
-       return (d.Value);
+       return (d.Value3);
      })
      .attr("x", function (d) {
        return x(d.Year) + x.bandwidth() / 2;
