@@ -418,8 +418,8 @@ d3.select("#labelRed2")
     d3.select("#labelGrey2")
     .attr("transform", "translate(-2 -7)");
 
-    d3.selectAll(".tag").style("color","var(--grey2)")
-    d3.select("#tag2").style("color","var(--red)")
+    // d3.selectAll(".tag").style("color","var(--grey2)")
+    // d3.select("#tag2").style("color","var(--red)")
 
 })
 }
@@ -565,9 +565,7 @@ d3.select("#labelRed2")
    .style('font-family', 'Montserrat');
 
 
-   //change color of the active tag
-   d3.selectAll(".tag").style("color","var(--grey2)")
-   d3.select("#tag3").style("color","var(--red)")
+
 
     })
   }
@@ -653,11 +651,9 @@ svg.append("g")
 .style('font-family', 'Montserrat');
   
 
-d3.selectAll(".tag").style("color","var(--grey2)")
-d3.select("#tag4").style("color","var(--red)")
-
   })
 }
+
 
 
 
@@ -836,10 +832,6 @@ svg.append("g")
 
 
 
-
-
-  d3.selectAll(".tag").style("color","var(--grey2)")
-  d3.select("#tag5").style("color","var(--red)")
   
   })
 }
