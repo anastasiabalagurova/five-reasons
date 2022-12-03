@@ -48,21 +48,26 @@ const resizeHandler = () =>{
     const tooltipPopup = document.querySelector('.tooltipPopup');
     const tooltipPopupText = document.querySelector('.tooltipPopup .tooltipText');
     const tooltipClose = document.querySelector('.tooltipClose');
+    const openPopup = (e) =>{
+        tooltipPopupText.textContent = e.target.querySelector('.tooltiptext').textContent;
+        tooltipPopup.classList.add('show');
+    }
+    const closePopup = () =>{
+        tooltipPopup.classList.remove('show');
+    }
     if(window.innerWidth < 768){
         
-    console.log('dd');
-        const openPopup = (e) =>{
-            console.log(e.target);
-            tooltipPopupText.textContent = e.target.querySelector('.tooltiptext').textContent;
-            tooltipPopup.classList.add('show');
-        }
         tooltips.forEach(tooltip => {
             tooltip.addEventListener('click', openPopup);
         });
-        tooltipClose.addEventListener('click', ()=>{
-            tooltipPopup.classList.remove('show');
+        tooltipClose.addEventListener('click', closePopup);
+    } else{
+        tooltips.forEach(tooltip => {
+            tooltip.removeEventListener('click', openPopup);
         });
+        tooltipClose.removeEventListener('click', closePopup);
     }
+    
 }
 resizeHandler();
 window.addEventListener('resize', resizeHandler);
