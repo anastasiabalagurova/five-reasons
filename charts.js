@@ -145,8 +145,12 @@ d3.select("#labelCountryRed7")
 function updateChart1() {
  d3.csv("data/chart1.csv").then(function (data) {
 
-d3.select("#chartTitle1")
-.html("Доля топ-5 ритейлеров, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, Infoline, анализ Компании, 2021</span></span>")
+  const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
+  const chartSource = document.querySelector('#chartTitle1 .source');
+  chartDesc.textContent = 'Доля топ-5 ритейлеров, 2021, % ';
+  chartDesc.chartSource = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
+// d3.select("#chartTitle1")
+// .html("Доля топ-5 ритейлеров, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, Infoline, анализ Компании, 2021</span></span>")
 
   const xSorted = d3.scaleLinear()
   .domain([0,100])
@@ -187,9 +191,12 @@ d3.select("#chartTitle1")
 
  function returnChart1() {
       d3.csv("data/chart1.csv").then(function (data) {
-     
-     d3.select("#chartTitle1")
-     .html("Доля современного ритейла, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, 2021</span></span>")
+        const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
+        const chartSource = document.querySelector('#chartTitle1 .source');
+        chartDesc.textContent = 'Доля современного ритейла, 2021, % ';
+        chartDesc.chartSource = 'Источник: Euromonitor, 2021';
+    //  d3.select("#chartTitle1")
+    //  .html("Доля современного ритейла, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, 2021</span></span>")
      
          // Add X axis
   const x = d3.scaleLinear()
