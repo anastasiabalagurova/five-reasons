@@ -300,6 +300,9 @@ article {
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   z-index: 10;
+  width: 100%;
+  max-height: 450px;
+  height: 450px;
 }
 
 
