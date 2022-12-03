@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5 причин инвестировать</title>
     <link rel="stylesheet" href="styleN.css" />
+    <link rel="stylesheet" href="style-mob.css" />
     <script src="https://unpkg.com/scrollama"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-axis@3"></script>
@@ -21,38 +22,53 @@
 <body>
     <div class="content">
         <div class="container container--wide">
-            <a class="back" href="https://www.magnit.com/ru/shareholders-and-investors/private-investors/">
-                <img src="images/icon.svg" id="backIcon">
-                <div>Раздел «Частным инвесторам»</div>
-            </a>
-            <div class="menuTemp"><img src="images/menuTemp.jpg" width="100%"></div>
-            <section id="intro">
+            <div class="backWrapper">
+                <a class="back" href="https://www.magnit.com/ru/shareholders-and-investors/private-investors/">
+                    <img src="images/icon.svg" id="backIcon">
+                    <div>Раздел «Частным инвесторам»</div>
+                </a>
+            </div>
+            <div class="menuTemp">
+                <img src="images/menuTemp.jpg" width="100%">
+                <img src="images/menuTempMobile.jpg" width="100%">
+            </div>
+            <section class="intro" id="intro">
                 <div class="intLogo"><img src="images/logo.svg"></div>
-                <div class="intTitle">5 причин инвестировать в «Магнит»</div>
+                <div class="intTitle">5 причин инвестировать в Магнит</div>
                 <div class="imageContainer"><img src="images/background.png" class="backgroundImage"></div>
             </section>
             <div class="containerProject">
-                <div class="tagList">
-                    <ul>
-                        <li>
-                            <a href="#1" class="tag tagInactive" id="tag1">Потенциал рынка</a>
-                        </li>
-                        <li>
-                            <a href="#2" class="tag tagInactive" id="tag2">Ведущий игрок в секторе</a>
-                        </li>
-                        <li>
-                            <a href="#3" class="tag tagInactive" id="tag3">Амбиции роста</a>
-                        </li>
-                        <li>
-                            <a href="#4" class="tag tagInactive" id="tag4">Повышение эффективности</a>
-                        </li>
-                        <li>
-                            <a href="#5" class="tag tagInactive" id="tag5">Дивиденды</a>
-                        </li>
-                    </ul>
+                <div class="tagWrapper">
+                    <div class="tagList">
+                        <ul>
+                            <li>
+                                <a href="#1" class="tag tagInactive" id="tag1">Потенциал рынка</a>
+                            </li>
+                            <li>
+                                <a href="#2" class="tag tagInactive" id="tag2">Ведущий игрок в секторе</a>
+                            </li>
+                            <li>
+                                <a href="#3" class="tag tagInactive" id="tag3">Амбиции роста</a>
+                            </li>
+                            <li>
+                                <a href="#4" class="tag tagInactive" id="tag4">Повышение эффективности</a>
+                            </li>
+                            <li>
+                                <a href="#5" class="tag tagInactive" id="tag5">Дивиденды</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tagBurger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
                 <a id="1"></a>
                 <section class="chapter" id="chapter1">
+                    <div class="chapterImage">
+                        <object data="" type="image/svg+xml" class="chapterSvg"></object>
+                    </div>
                     <div class="chapterTitle">Потенциал рынка</div>
                     <div class="chapterLead">Мы предлагаем доступ на крупный рынок с возможностями для органического
                         роста
@@ -60,7 +76,7 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
+                    <div class="sticky-thing sticky-thing-mobile">
                         <div class="chartTitle" id="chartTitle1">Доля современного ритейла, 2021, % <span
                                 class="tooltip"><img src="images/iconI.svg"><span
                                     class="tooltiptext source">Источник: Euromonitor, 2021</span></span>
@@ -90,6 +106,9 @@
 
                 <a id="2"></a>
                 <section class="chapter" id="chapter2">
+                    <div class="chapterImage">
+                        <object data="" type="image/svg+xml" class="chapterSvg"></object>
+                    </div>
                     <div class="chapterTitle">Ведущий игрок в секторе</div>
                     <div class="chapterLead">«Магнит» — один из крупнейших продуктовых ритейлеров в России с развитой
                         инфраструктурой, обширной базой лояльных покупателей, узнаваемым брендом и растущей долей
@@ -135,6 +154,9 @@
 
                 <a id="3"></a>
                 <section class="chapter" id="chapter3">
+                    <div class="chapterImage">
+                        <object data="" type="image/svg+xml" class="chapterSvg"></object>
+                    </div>
                     <div class="chapterTitle">Амбиции роста</div>
                     <div class="chapterLead">Ускоряем темпы роста Компании с акцентом на доходность для дальнейшего
                         расширения
@@ -186,6 +208,9 @@
 
                 <a id="4"></a>
                 <section class="chapter" id="chapter4">
+                    <div class="chapterImage">
+                        <object data="" type="image/svg+xml" class="chapterSvg"></object>
+                    </div>
                     <div class="chapterTitle">Повышение эффективности</div>
                     <div class="chapterLead">Мы обладаем огромным потенциалом для развития бизнеса</div>
                 </section>
@@ -288,11 +313,25 @@
                     </article>
                 </section>
             </div>
+            <div class="tooltipPopup">
+                <div class="tooltipClose">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L2 16" stroke="#A4A4A5" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M2 2L16 16" stroke="#A4A4A5" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+                <div class="tooltipText"></div>
+            </div>
             <script src="charts.js"></script>
             <script src="fade-in.js"></script>
             <script src="script.js"></script>
+            <script src="script-mobile.js"></script>
         </div>
-        <div class="footerTemp"><img src="images/footerTemp.png" width="100%"></div>
+        
+        <div class="footerTemp">
+            <img src="images/footerTemp.png" width="100%">
+            <img src="images/footerTempMobile.png" width="100%">
+        </div>
     </div>
 </body>
 
