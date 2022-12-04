@@ -168,7 +168,7 @@
     }
     
     .containerProject {
-        padding-top: 0;
+        padding-top: 5rem;
         padding-bottom: 1rem;
     }
 
@@ -275,11 +275,15 @@
     .chapter {
         height: 100vh;
         min-height: unset;
+        max-height: 36rem;
+        padding-bottom: 5rem;
+        justify-content: flex-end;
     }
 
     .chapterTitle {
         margin-top: 0.3rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
+        /* margin-bottom: 1rem; */
         font-size: 1.25rem;
         line-height: 2rem;
     }
@@ -296,7 +300,7 @@
 
     .tooltipPopup {
         position: fixed;
-        display: none;
+        display: flex;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -305,14 +309,16 @@
         border-radius: 24px 24px 0px 0px;
         background: var(--white);
         z-index: 101;
-        transform: translateZ(100px);
+        transform: translateZ(100px) translateY(150%);
         pointer-events: none;
         font-family: 'Montserrat', sans-serif;
+        transition: all ease 0.5s;
     }
 
     .tooltipPopup.show {
-        display: flex;
+        /* display: flex; */
         pointer-events: auto;
+        transform: translateZ(100px) translateY(0);
     }
 
     .tooltipClose {
@@ -358,6 +364,7 @@
 
     article {
         max-width: 100%;
+        padding: 1rem 0rem 0 0;
     }
 
     .chapterImage {
@@ -376,6 +383,10 @@
 
     .chart {
         width: 100%;
+        max-height: 22rem;
+    }
+    .chart svg{
+        overflow: initial;
     }
     .step{
         margin-top: 0;
@@ -389,8 +400,8 @@
         margin-bottom: 0 !important;
     }
     .interactivitylabel {
-        bottom: -1.2rem;
-        left: 0.8rem;
+        bottom: -0.5rem;
+        left: 0;
     }
 
     .interactivitylabel img {
@@ -400,6 +411,40 @@
     .factoid{
         margin-right: 0;
     }
-
-    /* .step */
+    .tip{
+        width: 11.8rem;
+    }
+    .toopltipNumber{
+        padding-left: 0.3rem;
+    }
+    #chart5 .labelRed{
+        font-size: 0.5rem;
+    }
+    #chart5 .tick text{
+        font-size: 0.5rem;
+    }
+    #chart5 #labelRed7{
+        transform: translate(0, -0.3rem);
+    }
+    #chart5 #labelRed9{
+        transform: translate(-0.7rem, 0.1rem);
+    }
+    #chart5 #labelRed13{
+        text-anchor: end;
+        transform: translate(1rem, 0rem);
+    }
+    #chartTitle5 .redText {
+        background: none;
+        padding: 0;
+        margin: 0;
+        border-radius: 4px;
+        color: var(--white);
+    }
+    #chartTitle5 .redText span{
+        background-color: var(--red);
+        padding: 2px 6px;
+        margin: 0 0.2rem 0 0;
+        border-radius: 4px;
+        color: var(--white);
+    }
 }
