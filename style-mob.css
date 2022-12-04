@@ -29,7 +29,7 @@
 }
 .containerProject {
     position: relative;
-    padding-top: 14.06rem;
+    padding-top: 6.56rem;
 }
 
 .tagWrapper {
@@ -141,11 +141,18 @@
 
     .intro .imageContainer {
         position: absolute;
-        bottom: 0;
+        bottom: -0.9rem;
         left: 0;
         width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
+    .backgroundImage{
+        height: 11.44rem;
+        width: auto;
+    }
     .intLogo {
         margin: 0;
         width: 3.06rem;
@@ -271,7 +278,7 @@
     }
 
     .chapterTitle {
-        margin-top: 0;
+        margin-top: 0.3rem;
         margin-bottom: 1rem;
         font-size: 1.25rem;
         line-height: 2rem;
@@ -354,13 +361,17 @@
     }
 
     .chapterImage {
-        width: 100%;
+        width: calc(100% + 2.5rem);
+        margin: 0 -1.25rem;
     }
 
     .chapterSvg {
         position: static;
         width: 100%;
         transform: unset;
+        height: 8.88rem;
+        width: auto;
+        margin: 0;
     }
 
     .chart {
