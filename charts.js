@@ -1,7 +1,7 @@
 const elemH = document.getElementById("chart1").getBoundingClientRect().height
 const elemW = document.getElementById("chart1").getBoundingClientRect().width
 
-const margin = {
+let margin = {
     top: 20,
     right: 25,
     bottom: 45,
@@ -9,7 +9,16 @@ const margin = {
   },
   width = elemW - margin.left - margin.right,
   height = elemH - margin.top - margin.bottom;
-
+if(window.innerWidth < 768){
+  margin = {
+    top: 20,
+    right: 0,
+    bottom: 40,
+    left: 0
+  };
+  width = elemW - margin.left - margin.right;
+  height = elemH - margin.top - margin.bottom;
+}
 //Draw SVG
 function drawSvg() {
   for (i = 1; i < 6; i++) {
@@ -145,7 +154,7 @@ function updateChart1() {
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
     chartDesc.textContent = 'Доля топ-5 ритейлеров, 2021, % ';
-    chartDesc.chartSource = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
+    chartSource.textContent = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
     // d3.select("#chartTitle1")
     // .html("Доля топ-5 ритейлеров, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, Infoline, анализ Компании, 2021</span></span>")
 
@@ -191,7 +200,7 @@ function returnChart1() {
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
     chartDesc.textContent = 'Доля современного ритейла, 2021, % ';
-    chartDesc.chartSource = 'Источник: Euromonitor, 2021';
+    chartSource.textContent = 'Источник: Euromonitor, 2021';
     //  d3.select("#chartTitle1")
     //  .html("Доля современного ритейла, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, 2021</span></span>")
 
@@ -449,12 +458,16 @@ function drawChart3() {
 
 
     // X axis
+    let range = width / 2;
+    if(window.innerWidth < 768){
+      range = width;
+    }
     const x = d3.scaleBand()
-      .range([0, width / 2])
+      .range([0, range])
       .domain(data.map(d => d.Year))
       .padding(0.2)
 
-
+    
     // tooltip
 
 
@@ -492,6 +505,15 @@ function drawChart3() {
       .style("z-index", "10")
       .style("opacity", "0")
 
+    let eventName= "mouseover";
+    let intLabelText= "Наведите на график";
+    if(window.innerWidth < 768){
+      eventName= "click";
+      document.addEventListener('scroll', ()=>{
+        tip.style("opacity", 0);
+      });
+      intLabelText= "Нажмите на график";
+    }
     // Bars
     svg.selectAll("mybar")
       .data(data)
@@ -501,10 +523,15 @@ function drawChart3() {
       .attr("fill", "#E6E9EF")
       .attr("y", d => y(0))
       .attr("height", d => height - y(0))
-      .on("mouseover", function (event, d) {
+      .on(eventName, function (event, d) {
+        let left = document.querySelector('.tip').offsetWidth + event.clientX;
+        let xValue = `${event.clientX}px`;
+        if(left > window.innerWidth){
+          xValue = `${event.clientX - document.querySelector('.tip').offsetWidth}px`;
+        }
         d3.select(".tip")
           .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + d.Value4 + "</span>")
-          .style("left", `${event.clientX}px`)
+          .style("left", xValue)
           .style("top", `${event.clientY}px`)
           .style("opacity", 1);
       })
@@ -524,11 +551,10 @@ function drawChart3() {
         return i * 100
       })
 
-
     //interactivity icon
     d3.select("#chart3")
       .append("div")
-      .html("<img src='images/iconInt.svg'><span class='intLabelText'>Наведите на график</span>")
+      .html("<img src='images/iconInt.svg'><span class='intLabelText'>"+ intLabelText +"</span>")
       .classed("interactivitylabel", true)
 
 
@@ -595,8 +621,12 @@ function drawChart4() {
 
 
     // X axis
+    let range = width / 2;
+    if(window.innerWidth < 768){
+      range = width;
+    }
     const x = d3.scaleBand()
-      .range([0, width / 2])
+      .range([0, range])
       .domain(data.map(d => d.Year))
       .padding(0.2)
 

@@ -8,7 +8,6 @@ const fixedObserver = (element, container, opt) => {
     }
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            console.log(entry);
             if (entry.isIntersecting) {
                 element.classList.add('fixed');
             } else {
