@@ -184,19 +184,21 @@
     }
 
     .tagWrapper.fixed {
-        position: sticky;
+        position: fixed;
+        top: unset;
+        bottom: 1.13rem;
         padding: 0;
         width: 100%;
         left: unset;
         right: 0;
         transform: unset;
     }
-    .tagWrapper.fixed .tagBurger{
+    /* .tagWrapper.fixed .tagBurger{
         right: 0;
     }
     .tagWrapper.fixed .tagList{
         right: 0;
-    }
+    } */
     .tagBurger {
         display: flex;
         position: absolute;
