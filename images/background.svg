@@ -36,46 +36,46 @@
 		transition-delay: 1.6s;
 	}
 	.svgIcon11{
-		transition-delay: 1.8s;
+		transition-delay: 0s;
 	}
 	.svgIcon12{
-		transition-delay: 2.0s;
+		transition-delay: 0s;
 	}
 	.svgIcon13{
-		transition-delay: 2.2s;
+		transition-delay: 2s;
 	}
 	.svgIcon14{
-		transition-delay: 2.4s;
+		transition-delay: 2.2s;
 	}
 	.svgIcon15{
-		transition-delay: 2.6s;
+		transition-delay: 2.4s;
 	}
 	.svgIcon16{
-		transition-delay: 3s;
+		transition-delay: 2.8s;
 	}
 	.svgIcon17{
-		transition-delay: 3.4s;
+		transition-delay: 3.2s;
 	}
 	.svgIcon18{
-		transition-delay: 3.8s;
+		transition-delay: 3.6s;
 	}
 	.svgIcon19{
-		transition-delay: 4.2s;
+		transition-delay: 4s;
 	}
 	.svgIcon20{
-		transition-delay: 4.6s;
+		transition-delay: 4.4s;
 	}
 	.svgIcon21{
-		transition-delay: 5s;
+		transition-delay: 4.8s;
 	}
 	.svgIcon22{
-		transition-delay: 5.4s;
+		transition-delay: 5.2s;
 	}
 	.svgIcon23{
-		transition-delay: 5.8s;
+		transition-delay: 5.6s;
 	}
 	.svgIcon24{
-		transition-delay: 6.2s;
+		transition-delay: 6s;
 	}
 	@media only screen and (max-width: 768px) {
 		.svgIcon8{

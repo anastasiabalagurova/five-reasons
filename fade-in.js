@@ -11,7 +11,6 @@ svgsAnimate.forEach((element, index) => {
 
 const resizeHandlerSvgs = () => {
     svgsAnimate.forEach((element, index) => {
-        if (index !== 0) {
             if (window.innerWidth < 768) {
                 if (!mobileLoaded) {
                     element.setAttribute("data", `.${sourceUrls[index]}-mob.svg`);
@@ -21,7 +20,7 @@ const resizeHandlerSvgs = () => {
                     element.setAttribute("data", `.${sourceUrls[index]}.svg`);
                 }
             }
-        }
+        
     });
 	if (window.innerWidth < 768) {
 		mobileLoaded = true;
@@ -39,7 +38,7 @@ svgsAnimate.forEach(object => {
         let svg = this.contentDocument.querySelector('svg');
         let svgIcons = svg.querySelectorAll('.svgIcon');
         const options = {
-            threshold: 0.5
+            threshold: 0.4
         }
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
