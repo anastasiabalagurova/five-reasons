@@ -14,11 +14,11 @@ const resizeHandlerSvgs = () => {
         if (index !== 0) {
             if (window.innerWidth < 768) {
                 if (!mobileLoaded) {
-                    element.setAttribute("data", `${sourceUrls[index]}-mob.svg`);
+                    element.setAttribute("data", `.${sourceUrls[index]}-mob.svg`);
                 }
             } else {
                 if (!descLoaded) {
-                    element.setAttribute("data", `${sourceUrls[index]}.svg`);
+                    element.setAttribute("data", `.${sourceUrls[index]}.svg`);
                 }
             }
         }
