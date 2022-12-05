@@ -185,6 +185,7 @@
 
     .tagWrapper.fixed {
         position: sticky;
+        top: calc(100% - 1.13rem);
         padding: 0;
         width: 100%;
         left: unset;
@@ -200,7 +201,7 @@
     .tagBurger {
         display: flex;
         position: absolute;
-        right: 1rem;
+        right: 1.25rem;
         bottom: 0;
         width: 3.13rem;
         height: 3.13rem;
@@ -248,7 +249,7 @@
         display: none;
         position: absolute;
         bottom: 0;
-        right: 1rem;
+        right: 1.25rem;
         padding: 1.13rem 0.94rem 0rem 2.96rem;
         width: 13.88rem;
         height: 18.63rem;
