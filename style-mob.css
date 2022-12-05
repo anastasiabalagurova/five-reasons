@@ -82,10 +82,12 @@
     transform: translate(-50%);
     z-index: 10;
 }
-
+.tooltipPopup {
+    display: none;
+}
 @media only screen and (max-width: 768px) {
     html {
-        font-size: 4.267vw;
+        font-size: min(4.267vw, 16px);
     }
 
     * {
@@ -113,6 +115,7 @@
         top: 0;
         left: 0;
         height: auto;
+        width: 100%;
     }
 
     .menuTemp img:nth-child(1) {
@@ -168,7 +171,7 @@
     }
     
     .containerProject {
-        padding-top: 5rem;
+        padding-top: 10rem;
         padding-bottom: 1rem;
     }
 
@@ -272,27 +275,7 @@
         color: var(--black);
     }
 
-    .chapter {
-        height: 100vh;
-        min-height: unset;
-        max-height: 36rem;
-        padding-bottom: 5rem;
-        justify-content: flex-end;
-    }
-
-    .chapterTitle {
-        margin-top: 0.3rem;
-        margin-bottom: 0;
-        /* margin-bottom: 1rem; */
-        font-size: 1.25rem;
-        line-height: 2rem;
-    }
-
-    .chapterLead {
-        width: 100%;
-        font-size: 1rem;
-        line-height: 1.50rem;
-    }
+   
 
     .back {
         display: none;
@@ -366,20 +349,59 @@
         max-width: 100%;
         padding: 1rem 0rem 0 0;
     }
+    .chapter {
+        height: 100vh;
+        min-height: unset;
+        /* max-height: 36rem;
+        padding-bottom: 10rem; */
+        justify-content: center;
+    }
+    /* .chapter2{
+        margin-top: 2rem;
+        padding-bottom: 10rem;
+    }
+    .chapter3{
+        margin-top: 2rem;
+        padding-bottom: 10rem;
+    }
+    .chapter4{
+        margin-top: 2rem;
+        padding-bottom: 10rem;
+    }
+    .chapter5{
+        margin-top: 2rem;
+        padding-bottom: 10rem;
+    } */
+    .chapterTitle {
+        margin-top: 1.4rem;
+        margin-bottom: 0.5rem;
+        /* margin-bottom: 1rem; */
+        font-size: 1.25rem;
+        line-height: 2rem;
+    }
 
+    .chapterLead {
+        width: 100%;
+        font-size: 1rem;
+        line-height: 1.50rem;
+    }
     .chapterImage {
-        width: calc(100% + 2.5rem);
-        margin: 0 -1.25rem;
+        width: 23.44rem;
+        height: 8.88rem;
+        margin: 3rem -1.25rem 0;
+        overflow: unset;
+        z-index: -1;
     }
 
     .chapterSvg {
-        position: static;
+        position: absolute;
+        top: -11.4rem;
+        left: 50%;
+        transform: translate(-50%);
         width: 100%;
-        transform: unset;
-        height: 8.88rem;
-        width: auto;
         margin: 0;
     }
+   
 
     .chart {
         width: 100%;
