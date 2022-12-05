@@ -111,11 +111,10 @@
     }
 
     .menuTemp {
-        position: absolute;
-        top: 0;
-        left: 0;
+        
         height: auto;
-        width: 100%;
+        width: calc(100% + 2.5rem);
+        margin: 0 -1.25rem;
     }
 
     .menuTemp img:nth-child(1) {
@@ -138,13 +137,13 @@
         height: 100vh;
         width: calc(100% + 2.5rem);
         margin: 0 -1.25rem;
-        max-height: unset;
+        max-height: 37.50rem;
         justify-content: center;
     }
 
     .intro .imageContainer {
         position: absolute;
-        bottom: -0.9rem;
+        bottom: 0;
         left: 0;
         width: 100%;
         overflow: hidden;
@@ -153,25 +152,26 @@
         justify-content: center;
     }
     .backgroundImage{
-        height: 11.44rem;
+        height: 16.69rem;
         width: auto;
     }
     .intLogo {
         margin: 0;
+        margin-top: clamp(4.00rem, 18vh, 7.50rem);
         width: 3.06rem;
         height: 3.06rem;
     }
 
     .intTitle {
         margin-top: 1.31rem;
-        margin-bottom: 7.7rem;
+        margin-bottom: 20.7rem;
         width: 13.63rem;
         font-size: 1.63rem;
         line-height: 1.81rem;
     }
     
     .containerProject {
-        padding-top: 10rem;
+        padding-top: 8.4rem;
         padding-bottom: 1rem;
     }
 
@@ -350,33 +350,36 @@
         padding: 1rem 0rem 0 0;
     }
     .chapter {
-        height: 100vh;
+        /* height: 100vh; */
         min-height: unset;
-        max-height: 43rem;
+        /* max-height: 43rem; */
         /* max-height: 36rem;
         padding-bottom: 10rem; */
         justify-content: center;
     }
-    /* .chapter2{
+    .chapter1{
         margin-top: 2rem;
-        padding-bottom: 10rem;
+        margin-bottom: 9.2rem;
+    }
+    .chapter2{
+        margin-top: 10rem;
+        margin-bottom: 7.5rem;
     }
     .chapter3{
-        margin-top: 2rem;
-        padding-bottom: 10rem;
+        margin-top: 10.9rem;
+        margin-bottom: 9.4rem;
     }
     .chapter4{
-        margin-top: 2rem;
-        padding-bottom: 10rem;
+        margin-top: 9.6rem;
+        margin-bottom: 12.7rem;
     }
     .chapter5{
-        margin-top: 2rem;
-        padding-bottom: 10rem;
-    } */
+        margin-top: 10.1rem;
+        margin-bottom: 6.8rem;
+    }
     .chapterTitle {
         margin-top: 1.4rem;
-        margin-bottom: 0.5rem;
-        /* margin-bottom: 1rem; */
+        margin-bottom: 1rem;
         font-size: 1.25rem;
         line-height: 2rem;
     }
@@ -389,7 +392,7 @@
     .chapterImage {
         width: 23.44rem;
         height: 8.88rem;
-        margin: 3rem -1.25rem 0;
+        margin: 0 -1.25rem 0;
         overflow: unset;
         z-index: -1;
     }
@@ -405,7 +408,8 @@
    
 
     .chart {
-        width: 100%;
+        width: calc(100% + 2.5rem);
+        margin: 0 -1.25rem;
         max-height: 22rem;
     }
     .chart svg{
@@ -424,7 +428,7 @@
     }
     .interactivitylabel {
         bottom: -0.5rem;
-        left: 0;
+        left: 1.25rem;
     }
 
     .interactivitylabel img {

@@ -12,9 +12,9 @@ let margin = {
 if(window.innerWidth < 768){
   margin = {
     top: 20,
-    right: 0,
+    right: 20,
     bottom: 40,
-    left: 0
+    left: 20
   };
   width = elemW - margin.left - margin.right;
   height = elemH - margin.top - margin.bottom;
