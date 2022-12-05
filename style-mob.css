@@ -352,6 +352,7 @@
     .chapter {
         height: 100vh;
         min-height: unset;
+        max-height: 43rem;
         /* max-height: 36rem;
         padding-bottom: 10rem; */
         justify-content: center;
@@ -408,7 +409,7 @@
         max-height: 22rem;
     }
     .chart svg{
-        overflow: initial;
+        overflow: visible;
     }
     .step{
         margin-top: 0;
