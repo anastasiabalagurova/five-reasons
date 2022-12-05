@@ -185,7 +185,6 @@
 
     .tagWrapper.fixed {
         position: sticky;
-        top: calc(calc(var(--vh, 1vh) * 100) - 1.13rem);
         padding: 0;
         width: 100%;
         left: unset;
