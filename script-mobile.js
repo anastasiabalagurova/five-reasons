@@ -54,17 +54,23 @@ const resizeHandler = () =>{
     const closePopup = () =>{
         tooltipPopup.classList.remove('show');
     }
+    function setHeightDynamic() {
+        var vh = window.innerHeight * 0.01;
+        document.querySelector('.tagWrapper').style.setProperty('--vhd', `${vh}px`);
+      }
     if(window.innerWidth < 768){
-        
+        setHeightDynamic();
         tooltips.forEach(tooltip => {
             tooltip.addEventListener('click', openPopup);
         });
         tooltipClose.addEventListener('click', closePopup);
+        window.addEventListener('resize', setHeightDynamic);
     } else{
         tooltips.forEach(tooltip => {
             tooltip.removeEventListener('click', openPopup);
         });
         tooltipClose.removeEventListener('click', closePopup);
+        window.removeEventListener('resize', setHeightDynamic);
     }
     
 }
