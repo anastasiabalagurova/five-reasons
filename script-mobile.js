@@ -41,7 +41,11 @@ tagBurger.addEventListener('click', ()=>{
 
 //tooltip popup
 
-
+function setHeightDynamic() {
+    var vh = window.innerHeight * 0.01;
+    document.querySelector('html').style.setProperty('--vh', `${vh}px`);
+  }
+setHeightDynamic();
 const resizeHandler = () =>{
     const tooltips = document.querySelectorAll('.tooltip');
     const tooltipPopup = document.querySelector('.tooltipPopup');
@@ -66,7 +70,7 @@ const resizeHandler = () =>{
         });
         tooltipClose.removeEventListener('click', closePopup);
     }
-    
+    setHeightDynamic();
 }
 resizeHandler();
 window.addEventListener('resize', resizeHandler);
