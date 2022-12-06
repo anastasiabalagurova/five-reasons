@@ -70,7 +70,6 @@ const resizeHandler = () =>{
         });
         tooltipClose.removeEventListener('click', closePopup);
     }
-    setHeightDynamic();
 }
 resizeHandler();
 window.addEventListener('resize', resizeHandler);
