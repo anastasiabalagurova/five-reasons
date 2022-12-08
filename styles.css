@@ -531,6 +531,10 @@ article {
   z-index: 20;
 }
 
+.tooltip .tooltiptextLeft{
+  left: 20%!important;
+}
+
   .tooltip .source {
     padding: 6px 10px;
     font-size: 0.8rem;
