@@ -257,9 +257,11 @@
         position: absolute;
         bottom: 0;
         right: 1.25rem;
-        padding: 1.13rem 0.94rem 0rem 2.96rem;
+        padding: 1.13rem 0.94rem 3.5rem 2.96rem;
+        /* padding: 1.13rem 0.94rem 0rem 2.96rem; */
         width: 13.88rem;
-        height: 18.63rem;
+        height: fit-content;
+        /* height: 18.63rem; */
         border-radius: 1.50rem;
         background: var(--lightgrey);
         text-align: right;
