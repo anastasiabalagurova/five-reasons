@@ -404,7 +404,7 @@ article {
 }
 
 .unit {
-  padding-left: 0.4rem;
+  /* padding-left: 0.4rem; */
   font-weight: 700;
   font-size: 1.3rem;
 }
@@ -526,7 +526,7 @@ article {
 
   position: absolute;
   top: 100%;
-  left: 20%;
+  right: 20%;
   /* margin-left: -6rem; */
   z-index: 20;
 }
