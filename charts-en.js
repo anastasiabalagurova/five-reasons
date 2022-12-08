@@ -133,8 +133,8 @@ function drawChart1() {
     d3.select("#barCountry7")
       .attr("fill", "#E30613");
 
-    d3.selectAll(".tag").style("color", "var(--grey2)")
-    d3.select("#tag1").style("color", "var(--red)")
+    // d3.selectAll(".tag").style("color", "var(--grey2)")
+    // d3.select("#tag1").style("color", "var(--red)")
 
 
 

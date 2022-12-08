@@ -49,31 +49,31 @@ d3.csv("data/chart5.csv").then(function (data) {
 
   
 
-    if(currentIndex < 4){
-      d3.selectAll(".tag").style("color","var(--grey2)")
-      d3.select("#tag1").style("color","var(--red)")
-    }
+    // if(currentIndex < 4){
+    //   d3.selectAll(".tag").style("color","var(--grey2)")
+    //   d3.select("#tag1").style("color","var(--red)")
+    // }
 
-    else if(currentIndex < 10){
-      d3.selectAll(".tag").style("color","var(--grey2)")
-      d3.select("#tag2").style("color","var(--red)")
-    }
+    // else if(currentIndex < 10){
+    //   d3.selectAll(".tag").style("color","var(--grey2)")
+    //   d3.select("#tag2").style("color","var(--red)")
+    // }
 
 
-    else if(currentIndex < 17){
-      d3.selectAll(".tag").style("color","var(--grey2)")
-      d3.select("#tag3").style("color","var(--red)")
-    }
+    // else if(currentIndex < 17){
+    //   d3.selectAll(".tag").style("color","var(--grey2)")
+    //   d3.select("#tag3").style("color","var(--red)")
+    // }
 
-    else if(currentIndex < 22){
-      d3.selectAll(".tag").style("color","var(--grey2)")
-      d3.select("#tag4").style("color","var(--red)")
-    }
+    // else if(currentIndex < 22){
+    //   d3.selectAll(".tag").style("color","var(--grey2)")
+    //   d3.select("#tag4").style("color","var(--red)")
+    // }
 
-    else {
-      d3.selectAll(".tag").style("color","var(--grey2)")
-      d3.select("#tag5").style("color","var(--red)")
-    }
+    // else {
+    //   d3.selectAll(".tag").style("color","var(--grey2)")
+    //   d3.select("#tag5").style("color","var(--red)")
+    // }
 
 
     if(currentIndex == 1){
@@ -120,4 +120,39 @@ function onVisible(element, callback) {
   }
 
 
+const menuTags = document.querySelectorAll('.tag');
+let lastIndex = -1;
+function scrollSpy(selector) {
+	let els = document.querySelectorAll(selector);
+	els = Array.from(els);
+	els.forEach((el, index) => {
+		const options = {
+      rootMargin: '0% 0% -50% 0%',
+			threshold: 0,
+		};
+		const callback = (entries, observer) => {
+			entries.forEach((entry) => {
+        
+				if (entry.isIntersecting) {
+          lastIndex = index;
+				}else{
+          if(entry.target.getBoundingClientRect().y > 0){
+            if(index-lastIndex <= 1){
+              lastIndex = index - 1;
+            }
+          } 
+        }   
+        menuTags.forEach(tag => {
+          tag.style.color = 'var(--grey2)';
+        });
+        if(lastIndex >= 0){
+          menuTags[lastIndex].style.color = 'var(--red)';
+        }
+			});
+		};
+		const observer = new IntersectionObserver(callback, options);
+		observer.observe(el);
+	});
+}
 
+scrollSpy('.chapter');
