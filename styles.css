@@ -267,11 +267,7 @@ li{
   flex-direction: row;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-    position: sticky;
-    width: fit-content;
-    padding: 0 8px;
-  top: 95vh;
+  width: fit-content;
   margin: auto auto 0.6rem 0;
   border-radius: 10rem;
   z-index: 10;
@@ -450,7 +446,7 @@ article {
 .redText {
   background-color: var(--red);
   padding: 2px 6px;
-  margin: 0 0.2rem 0 0.2rem;
+  /* margin: 0 0.2rem 0 0.2rem; */
   border-radius: 4px;
   color: var(--white);
 }
@@ -458,7 +454,7 @@ article {
 .greyText {
   background-color: var(--grey);
   padding: 2px 6px;
-  margin: 0 0.2rem 0 0;
+  /* margin: 0 0.2rem 0 0; */
   border-radius: 4px;
 }
 
