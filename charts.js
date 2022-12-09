@@ -1,6 +1,15 @@
 const elemH = document.getElementById("chart1").getBoundingClientRect().height
 const elemW = document.getElementById("chart1").getBoundingClientRect().width
 
+
+async function start() {
+  
+}
+
+
+
+
+
 let margin = {
     top: 20,
     right: 25,
@@ -133,17 +142,6 @@ function drawChart1() {
     d3.select("#barCountry7")
       .attr("fill", "#E30613");
 
-    // d3.selectAll(".tag").style("color", "var(--grey2)")
-    // d3.select("#tag1").style("color", "var(--red)")
-
-
-
-
-
-
-
-
-
 
   })
 }
@@ -201,8 +199,6 @@ function returnChart1() {
     const chartSource = document.querySelector('#chartTitle1 .source');
     chartDesc.textContent = 'Доля современного ритейла, 2021, % ';
     chartSource.textContent = 'Источник: Euromonitor, 2021';
-    //  d3.select("#chartTitle1")
-    //  .html("Доля современного ритейла, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, 2021</span></span>")
 
     // Add X axis
     const x = d3.scaleLinear()
@@ -244,7 +240,11 @@ function returnChart1() {
   })
 }
 
-function drawChart2() {
+async function drawChart2() {
+
+  const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
+  d3.formatDefaultLocale(locale);
+  const f = d3.format(",")
 
   const svg = d3.select("#chart2")
     .select("svg")
@@ -266,10 +266,6 @@ function drawChart2() {
       .range([0, width])
       .domain(data.map(d => d.Year))
       .padding(0.2)
-
-
-
-
 
 
     //Red line
@@ -326,7 +322,6 @@ function drawChart2() {
       })
 
 
-
     //Grey line
     svg.append("path")
       .datum(data)
@@ -366,7 +361,7 @@ function drawChart2() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value2 + "%");
+        return (f(d.Value2) + "%");
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -392,7 +387,7 @@ function drawChart2() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value + "%");
+        return (f(d.Value) + "%");
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -433,14 +428,15 @@ function drawChart2() {
     d3.select("#labelGrey2")
       .attr("transform", "translate(-2 -7)");
 
-    // d3.selectAll(".tag").style("color","var(--grey2)")
-    // d3.select("#tag2").style("color","var(--red)")
-
   })
 }
 
 
-function drawChart3() {
+async function drawChart3() {
+  const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
+  d3.formatDefaultLocale(locale);
+  const f = d3.format(",.5r");
+
   const svg = d3.select("#chart3")
     .select("svg")
     .append("g")
@@ -466,35 +462,6 @@ function drawChart3() {
       .range([0, range])
       .domain(data.map(d => d.Year))
       .padding(0.2)
-
-    
-    // tooltip
-
-
-    // const tooltip = d3.select("#chart3")
-    // .append("div")
-    // .html("hello")
-    // .style("opacity", 0)
-    // .attr("class", "chartTooltip")
-
-    // // Three function that change the tooltip when user hover / move / leave a cell
-    // const mouseover = function(event, d) {
-    //   // const subgroupName = d3.select(this.parentNode).datum().key;
-    //   const gross = d.Value2;
-    //   tooltip
-    //       .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + gross + "</span")
-    //       .style("opacity", 1)
-
-    // }
-    // const mousemove = function(event, d) {
-    //   tooltip.style("transform","translateY(-55%)")
-    //          .style("left",(event.x)/2+"px")
-    //          .style("top",(event.y)/2- height +"px")
-    // }
-    // const mouseleave = function(event, d) {
-    //   tooltip
-    //     .style("opacity", 0)
-    // }
 
 
     const tip = d3
@@ -539,10 +506,6 @@ function drawChart3() {
         tip.style("opacity", 0);
       })
 
-
-      // .transition()
-      // .duration(500)
-      // .style("opacity", 1)
       .transition()
       .duration(800)
       .attr("height", d => height - y(parseFloat(d.Value))) // always equal to 0
@@ -558,13 +521,12 @@ function drawChart3() {
       .classed("interactivitylabel", true)
 
 
-
     //labels
     svg.selectAll(".label")
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value3);
+        return f(d.Value);
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -603,7 +565,10 @@ function drawChart3() {
   })
 }
 
-function drawChart4() {
+async function drawChart4() {
+  const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
+  d3.formatDefaultLocale(locale);
+  const f = d3.format(",")
 
   const svg = d3.select("#chart4")
     .select("svg")
@@ -653,7 +618,7 @@ function drawChart4() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value) + "%";
+        return f(d.Value) + "%";
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -691,7 +656,13 @@ function drawChart4() {
 }
 
 
-function drawChart5() {
+async function drawChart5() {
+
+  const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
+  d3.formatDefaultLocale(locale);
+  const f = d3.format(",")
+  const f2 = d3.format(".1f")
+
 
   const svg = d3.select("#chart5")
     .select("svg")
@@ -783,7 +754,7 @@ function drawChart5() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value3);
+        return f2(d.Value);
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -809,7 +780,7 @@ function drawChart5() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value4 + "%");
+        return (f(d.Value2) + "%");
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;

@@ -39,7 +39,7 @@ function drawChart1() {
 
 
   // Parse the Data
-  d3.csv("data/chart1-en.csv").then(function (data) {
+  d3.csv("data/chart1.csv").then(function (data) {
 
 
     // Add X axis
@@ -50,7 +50,7 @@ function drawChart1() {
     // Y axis
     const y = d3.scaleBand()
       .range([0, height])
-      .domain(data.map(d => d.Country))
+      .domain(data.map(d => d.CountryEn))
       .padding(0.1);
 
 
@@ -61,7 +61,7 @@ function drawChart1() {
       .join("rect")
       .attr("class", "myRect")
       .attr("x", x(0) + 100)
-      .attr("y", d => y(d.Country))
+      .attr("y", d => y(d.CountryEn))
       .attr("width", d => x(0))
       .attr("height", y.bandwidth())
       .attr("fill", "#E6E9EF")
@@ -90,7 +90,7 @@ function drawChart1() {
 
       })
       .attr("y", function (d) {
-        return y(d.Country) + y.bandwidth() / 2 + 3;
+        return y(d.CountryEn) + y.bandwidth() / 2 + 3;
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
@@ -133,23 +133,13 @@ function drawChart1() {
     d3.select("#barCountry7")
       .attr("fill", "#E30613");
 
-    // d3.selectAll(".tag").style("color", "var(--grey2)")
-    // d3.select("#tag1").style("color", "var(--red)")
-
-
-
-
-
-
-
-
 
 
   })
 }
 
 function updateChart1() {
-  d3.csv("data/chart1-en.csv").then(function (data) {
+  d3.csv("data/chart1.csv").then(function (data) {
 
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
@@ -162,7 +152,7 @@ function updateChart1() {
 
     const ySorted = d3.scaleBand()
       .range([0, height])
-      .domain((data.sort((a, b) => d3.descending(a.Value2, b.Value2)).map(d => d.Country)))
+      .domain((data.sort((a, b) => d3.descending(a.Value2, b.Value2)).map(d => d.CountryEn)))
       .padding(0.1);
 
     const svg = d3.select("#chart1")
@@ -170,7 +160,7 @@ function updateChart1() {
       .transition()
       .duration(800)
       .attr("width", d => xSorted(d.Value2))
-      .attr("y", (d) => ySorted(d.Country))
+      .attr("y", (d) => ySorted(d.CountryEn))
 
 
     d3.selectAll(".labelCountry")
@@ -182,7 +172,7 @@ function updateChart1() {
       .attr("x", function (d) {
         return xSorted(parseFloat(d.Value2)) + 120;
       })
-      .attr("y", (d, i) => ySorted(d.Country) + ySorted.bandwidth() / 2 + 3)
+      .attr("y", (d, i) => ySorted(d.CountryEn) + ySorted.bandwidth() / 2 + 3)
 
 
 
@@ -194,7 +184,7 @@ function updateChart1() {
 }
 
 function returnChart1() {
-  d3.csv("data/chart1-en.csv").then(function (data) {
+  d3.csv("data/chart1.csv").then(function (data) {
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
     chartDesc.textContent = 'Modern retail share in grocery retail, 2021, %';
@@ -208,7 +198,7 @@ function returnChart1() {
     // Y axis
     const y = d3.scaleBand()
       .range([0, height])
-      .domain(data.map(d => d.Country))
+      .domain(data.map(d => d.CountryEn))
       .padding(0.1);
 
 
@@ -217,7 +207,7 @@ function returnChart1() {
       .transition()
       .duration(800)
       .attr("width", d => x(d.Value)) // always equal to 0
-      .attr("y", (d) => y(d.Country))
+      .attr("y", (d) => y(d.CountryEn))
 
 
     d3.selectAll(".labelCountry")
@@ -229,7 +219,7 @@ function returnChart1() {
       .attr("x", function (d) {
         return x(parseFloat(d.Value)) + 120;
       })
-      .attr("y", (d) => y(d.Country) + y.bandwidth() / 2 + 3)
+      .attr("y", (d) => y(d.CountryEn) + y.bandwidth() / 2 + 3)
 
 
 
@@ -248,7 +238,7 @@ function drawChart2() {
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // Parse the Data
-  d3.csv("data/chart2-en.csv").then(function (data) {
+  d3.csv("data/chart2.csv").then(function (data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
@@ -348,13 +338,14 @@ function drawChart2() {
         return i * 130
       })
 
+      // const f = d3.format(".2r")
 
     //labels Red dots
     svg.selectAll(".labelRed")
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value2 + "%");
+        return (d.Value2 + "%")
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -426,6 +417,10 @@ function drawChart2() {
 
 
 function drawChart3() {
+
+  const f = d3.format(",.5r")
+  const f2 = d3.format(",.4r")
+
   const svg = d3.select("#chart3")
     .select("svg")
     .append("g")
@@ -433,7 +428,7 @@ function drawChart3() {
 
 
   // Parse the Data
-  d3.csv("data/chart3-en.csv").then(function (data) {
+  d3.csv("data/chart3.csv").then(function (data) {
 
 
     // Add Y axis
@@ -486,7 +481,7 @@ function drawChart3() {
           xValue = `${event.clientX - document.querySelector('.tip').offsetWidth}px`;
         }
         d3.select(".tip")
-          .html("Number of opened stores (gross)" + "<span class = 'toopltipNumber'>" + d.Value4 + "</span>")
+          .html("Number of opened stores (gross)" + "<span class = 'toopltipNumber'>" + f2(d.Value2) + "</span>")
           .style("left", xValue)
           .style("top", `${event.clientY}px`)
           .style("opacity", 1);
@@ -516,7 +511,7 @@ function drawChart3() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (d.Value3);
+        return f(d.Value);
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -564,7 +559,7 @@ function drawChart4() {
 
 
   // Parse the Data
-  d3.csv("data/chart4-en.csv").then(function (data) {
+  d3.csv("data/chart4.csv").then(function (data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
@@ -651,7 +646,7 @@ function drawChart5() {
     .attr("transform", `translate(${margin.left},${margin.top+20})`);
 
   // Parse the Data
-  d3.csv("data/chart5-en.csv").then(function (data) {
+  d3.csv("data/chart5.csv").then(function (data) {
 
     // Add Y axis
     const y = d3.scaleLinear()

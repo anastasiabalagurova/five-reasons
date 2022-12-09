@@ -44,36 +44,8 @@ d3.csv("data/chart5.csv").then(function (data) {
     console.log(currentIndex)
 
     if(currentIndex == 0 && currentDirection == "up"){
-      returnChart1(1)
+      returnChart1()
     }
-
-  
-
-    // if(currentIndex < 4){
-    //   d3.selectAll(".tag").style("color","var(--grey2)")
-    //   d3.select("#tag1").style("color","var(--red)")
-    // }
-
-    // else if(currentIndex < 10){
-    //   d3.selectAll(".tag").style("color","var(--grey2)")
-    //   d3.select("#tag2").style("color","var(--red)")
-    // }
-
-
-    // else if(currentIndex < 17){
-    //   d3.selectAll(".tag").style("color","var(--grey2)")
-    //   d3.select("#tag3").style("color","var(--red)")
-    // }
-
-    // else if(currentIndex < 22){
-    //   d3.selectAll(".tag").style("color","var(--grey2)")
-    //   d3.select("#tag4").style("color","var(--red)")
-    // }
-
-    // else {
-    //   d3.selectAll(".tag").style("color","var(--grey2)")
-    //   d3.select("#tag5").style("color","var(--red)")
-    // }
 
 
     if(currentIndex == 1){
