@@ -389,18 +389,15 @@
         margin: 0;
     }
     .chart {
-        /* width: calc(100% + 2.5rem);
-        margin: 0 -1.25rem; */
         margin: 0 auto;
         display: flex;
-        max-height: 22rem;
-        max-width: 21rem;
+        max-height: unset;
+        height: auto;
+        max-width: unset;
+        width: 100%;
     }
     .chart svg {
-        /* overflow: visible; */
         margin: 0 auto;
-        height: 100%;
-        width: auto;
     }
     .step {
         margin-top: 0;
@@ -446,7 +443,7 @@
         text-anchor: end;
         transform: translate(0.9rem, 0rem);
     }
-    #chartTitle5 .redText {
+    /* #chartTitle5 .redText {
         background: none;
         padding: 0;
         margin: 0;
@@ -459,7 +456,7 @@
         margin: 0 0.2rem 0 0;
         border-radius: 4px;
         color: var(--white);
-    }
+    } */
 }
 
 @media only screen and (max-height: 37.5rem) {
@@ -467,3 +464,16 @@
         margin-bottom: 14.7rem;
     }
 }
+@media (orientation: landscape) and (max-width: 767px) {
+    .chart {
+        margin: 0 auto;
+        display: flex;
+        max-height: 22rem;
+        max-width: 21rem;
+    }
+    .chart svg {
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+    }
+  }
