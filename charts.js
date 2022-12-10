@@ -1,5 +1,3 @@
-// const elemH = document.getElementById("chart1").getBoundingClientRect().height
-// const elemW = document.getElementById("chart1").getBoundingClientRect().width
 let elemH = 450;
 let elemW = 700;
 
@@ -34,6 +32,7 @@ const setOptions = () =>{
 }
 setOptions();
 window.addEventListener('resize', setOptions);
+
 //Draw SVG
 function drawSvg() {
   for (i = 1; i < 6; i++) {
@@ -50,8 +49,6 @@ function drawChart1() {
   const svg = d3.select("#chart1")
     .select("svg")
     .append("g");
-    // .attr("transform", `translate(${margin.left},0)`);
-
 
   // Parse the Data
   d3.csv("data/chart1.csv").then(function (data) {
@@ -67,8 +64,6 @@ function drawChart1() {
       .range([0, height])
       .domain(data.map(d => d.Country))
       .padding(0.1);
-
-
 
     // Bars
     svg.selectAll("myRect")
@@ -91,9 +86,7 @@ function drawChart1() {
         return i * 100
       })
 
-
-
-    //   //labels
+    //labels
     svg.selectAll(".labelCountry")
       .data(data)
       .join("text")
@@ -138,17 +131,12 @@ function drawChart1() {
       .attr("transform", "translate(-3 0)")
 
 
-
-
     d3.select("#labelCountryRed7")
       .attr("fill", "#E30613")
       .style("font-weight", "600")
 
-
     d3.select("#barCountry7")
       .attr("fill", "#E30613");
-
-
   })
 }
 
@@ -159,8 +147,6 @@ function updateChart1() {
     const chartSource = document.querySelector('#chartTitle1 .source');
     chartDesc.textContent = 'Доля топ-5 ритейлеров, 2021, % ';
     chartSource.textContent = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
-    // d3.select("#chartTitle1")
-    // .html("Доля топ-5 ритейлеров, 2021, % <span class='tooltip'><img src='images/iconI.svg'><span class='tooltiptext source'>Источник: Euromonitor, Infoline, анализ Компании, 2021</span></span>")
 
     const xSorted = d3.scaleLinear()
       .domain([0, 100])
@@ -440,7 +426,6 @@ async function drawChart2() {
   })
 }
 
-
 async function drawChart3() {
   const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
   d3.formatDefaultLocale(locale);
@@ -664,7 +649,6 @@ async function drawChart4() {
   })
 }
 
-
 async function drawChart5() {
 
   const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
@@ -851,4 +835,3 @@ async function drawChart5() {
   })
 }
 
-// drawSvg()

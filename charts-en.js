@@ -1,5 +1,3 @@
-// const elemH = document.getElementById("chart1").getBoundingClientRect().height
-// const elemW = document.getElementById("chart1").getBoundingClientRect().width
 let elemH = 450;
 let elemW = 700;
 
