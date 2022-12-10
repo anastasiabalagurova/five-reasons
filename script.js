@@ -6,7 +6,13 @@ let switcher1 = false,
 
     let state = 0;
 
-
+let triggerStatus = {
+  "chart1": false,
+  "chart2": false,
+  "chart3": false,
+  "chart4": false,
+  "chart5": false
+};
 // Parse the Data
 d3.csv("data/chart5.csv").then(function (data) {
 
@@ -43,12 +49,12 @@ d3.csv("data/chart5.csv").then(function (data) {
 
     console.log(currentIndex)
 
-    if(currentIndex == 0 && currentDirection == "up"){
+    if(currentIndex == 0 && currentDirection == "up" && triggerStatus["chart1"]){
       returnChart1()
     }
 
 
-    if(currentIndex == 1){
+    if(currentIndex == 1 && triggerStatus["chart1"]){
       updateChart1()
       
     }
@@ -61,35 +67,75 @@ d3.csv("data/chart5.csv").then(function (data) {
 
 
 
-function onVisible(element, callback) {
-  new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-    if(entry.intersectionRatio > 0) {
-      callback(element);
-      observer.disconnect();
-    }
-
-    });
-  }).observe(element);
-  }
-
-onVisible(document.querySelector("#chart1"), () =>  drawChart1());
-onVisible(document.querySelector("#chart2"), () =>  drawChart2());
-onVisible(document.querySelector("#chart3"), () =>  drawChart3());	  
-onVisible(document.querySelector("#chart4"), () =>  drawChart4());
-onVisible(document.querySelector("#chart5"), () =>  drawChart5());
 
 function onVisible(element, callback) {
   new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-    if(entry.intersectionRatio > 0) {
+    if(entry.isIntersecting && !triggerStatus[element.id]) {
+      triggerStatus[element.id] = true;
       callback(element);
-      observer.disconnect();
+      console.log(element);
+      // observer.disconnect();
     }
 
     });
   }).observe(element);
+}
+drawSvg();
+const setVisible = () =>{
+  onVisible(document.querySelector("#chart1"), () =>  drawChart1());
+  onVisible(document.querySelector("#chart2"), () =>  drawChart2());
+  onVisible(document.querySelector("#chart3"), () =>  drawChart3());	  
+  onVisible(document.querySelector("#chart4"), () =>  drawChart4());
+  onVisible(document.querySelector("#chart5"), () =>  drawChart5());
+}
+setVisible();
+
+const cleanCharts = () =>{
+  document.querySelector("#chart1").innerHTML = '';
+  document.querySelector("#chart2").innerHTML = '';
+  document.querySelector("#chart3").innerHTML = '';
+  document.querySelector("#chart4").innerHTML = '';
+  document.querySelector("#chart5").innerHTML = '';
+  triggerStatus = {
+    "chart1": false,
+    "chart2": false,
+    "chart3": false,
+    "chart4": false,
+    "chart5": false
+  };
+}
+
+let isMobile = false;
+const redrawCharts = () =>{
+  if(window.innerWidth < 767 && !isMobile){
+    isMobile = true;
+    cleanCharts();
+    drawSvg();
+    setVisible();
+    // console.log('resize mobile');
   }
+  if(window.innerWidth > 767 && isMobile){
+    isMobile = false;
+    cleanCharts();
+    drawSvg();
+    setVisible();
+    // console.log('resize desktop');
+  }
+}
+redrawCharts();
+window.addEventListener('resize', redrawCharts);
+// function onVisible(element, callback) {
+//   new IntersectionObserver((entries, observer) => {
+//     entries.forEach(entry => {
+//     if(entry.intersectionRatio > 0) {
+//       callback(element);
+//       observer.disconnect();
+//     }
+
+//     });
+//   }).observe(element);
+//   }
 
 
 const menuTags = document.querySelectorAll('.tag');

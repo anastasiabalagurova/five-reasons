@@ -58,7 +58,7 @@ const resizeHandler = () =>{
     const closePopup = () =>{
         tooltipPopup.classList.remove('show');
     }
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 767){
         
         tooltips.forEach(tooltip => {
             tooltip.addEventListener('click', openPopup);

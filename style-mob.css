@@ -5,6 +5,7 @@
 .menuTemp img:nth-child(2) {
     display: none;
 }
+
 .footerTemp img:nth-child(2) {
     display: none;
 }
@@ -18,7 +19,8 @@
     justify-content: flex-end;
     align-items: center;
 }
-.stickyTagContainer{
+
+.stickyTagContainer {
     position: absolute;
     top: 0;
     left: 50%;
@@ -27,6 +29,7 @@
     height: 100%;
     width: 100%;
 }
+
 .containerProject {
     position: relative;
     padding-top: 6.56rem;
@@ -83,34 +86,43 @@
     transform: translate(-50%);
     z-index: 10;
 }
+
 .tooltipPopup {
     display: none;
 }
-@media only screen and (max-width: 768px) {
+
+.chart svg {
+    width: 100%;
+    height: auto;
+}
+
+#chart3 {
+    display: flex;
+}
+
+#chart3 svg {
+    margin-top: auto;
+}
+
+@media only screen and (max-width: 767px) {
     html {
         font-size: min(4.267vw, 16px);
     }
-
     * {
         margin: 0;
         padding: 0;
     }
-
     ul {
         margin: 0;
     }
-
-    img,
-    svg {
+    img, svg {
         width: 100%;
         height: auto;
     }
-
     .container {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
     }
-
     .menuTemp {
         display: flex;
         justify-content: center;
@@ -119,11 +131,9 @@
         width: auto;
         margin: 0 -1.25rem;
     }
-
     .menuTemp img:nth-child(1) {
         display: none;
     }
-
     .menuTemp img:nth-child(2) {
         display: block;
         width: auto;
@@ -132,11 +142,9 @@
     .footerTemp img:nth-child(1) {
         display: none;
     }
-
     .footerTemp img:nth-child(2) {
         display: block;
     }
-
     .intro {
         position: relative;
         height: calc(calc(var(--vh, 1vh) * 100) - 3.5rem);
@@ -145,7 +153,6 @@
         max-height: 600px;
         justify-content: center;
     }
-
     .intro .imageContainer {
         position: absolute;
         bottom: 0;
@@ -156,7 +163,7 @@
         align-items: center;
         justify-content: center;
     }
-    .backgroundImage{
+    .backgroundImage {
         height: 19.6rem;
         width: auto;
     }
@@ -166,21 +173,17 @@
         width: 3.06rem;
         height: 3.06rem;
     }
-
     .intTitle {
-        
         margin-top: 1.21rem;
         margin-bottom: 12.7rem;
         width: 13.63rem;
         font-size: 1.63rem;
         line-height: 1.81rem;
     }
-    
     .containerProject {
         padding-top: 8.4rem;
         padding-bottom: 1rem;
     }
-
     .tagWrapper {
         top: calc(100vh - 1.13rem);
         left: unset;
@@ -188,7 +191,6 @@
         transform: translate(50%);
         width: calc(100% + 2.5rem);
     }
-
     .tagWrapper.fixed {
         position: fixed;
         top: unset;
@@ -218,7 +220,6 @@
         transform: translateZ(10px);
         pointer-events: auto;
     }
-
     .tagBurger span {
         position: absolute;
         left: 50%;
@@ -227,31 +228,24 @@
         height: 0.13rem;
         background: #A4A4A5;
     }
-
     .tagBurger span:nth-child(1) {
         transform: translate(-50%, calc(-50% - 0.44rem));
     }
-
     .tagBurger span:nth-child(2) {
         transform: translate(-50%, -50%);
     }
-
     .tagBurger span:nth-child(3) {
         transform: translate(-50%, calc(-50% + 0.44rem));
     }
-
     .tagBurger.show span:nth-child(1) {
         transform: translate(-50%, -50%) rotate(45deg);
     }
-
     .tagBurger.show span:nth-child(2) {
         opacity: 0;
     }
-
     .tagBurger.show span:nth-child(3) {
         transform: translate(-50%, -50%) rotate(-45deg);
     }
-
     .tagList {
         display: none;
         position: absolute;
@@ -267,30 +261,23 @@
         text-align: right;
         pointer-events: none;
     }
-
     .tagList.show {
         display: flex;
         pointer-events: auto;
     }
-
     .tagList li {
         padding: 0;
         margin-bottom: 0.75rem;
     }
-
     .tag {
         padding: 0;
         font-size: 1rem;
         line-height: 1.50rem;
         color: var(--black);
     }
-
-   
-
     .back {
         display: none;
     }
-
     .tooltipPopup {
         position: fixed;
         display: flex;
@@ -307,13 +294,11 @@
         font-family: 'Montserrat', sans-serif;
         transition: all ease 0.5s;
     }
-
     .tooltipPopup.show {
         /* display: flex; */
         pointer-events: auto;
         transform: translateZ(100px) translateY(0);
     }
-
     .tooltipClose {
         position: absolute;
         width: 0.88rem;
@@ -321,29 +306,24 @@
         top: 1rem;
         right: 1rem;
     }
-
     .tooltip * {
         pointer-events: none;
     }
-
     .tooltip img {
         margin-bottom: -0.2rem;
         padding: 0;
         width: 0.94rem;
         height: 0.94rem;
     }
-
     .tooltip .tooltiptext {
         display: none;
     }
-
     .scrolly {
         flex-direction: column;
     }
     .scrolly:last-child {
         margin-bottom: 4rem;
     }
-
     .sticky-thing {
         position: static;
         width: 100%;
@@ -351,10 +331,9 @@
         z-index: 5;
         background: var(--white);
     }
-    .sticky-thing-mobile{
+    .sticky-thing-mobile {
         position: sticky;
     }
-
     article {
         max-width: 100%;
         padding: 1rem 0rem 0 0;
@@ -368,19 +347,19 @@
         justify-content: center;
         margin-bottom: 6rem;
     }
-    .chapter1{
+    .chapter1 {
         margin-top: 2rem;
     }
-    .chapter2{
+    .chapter2 {
         margin-top: 10rem;
     }
-    .chapter3{
+    .chapter3 {
         margin-top: 10.9rem;
     }
-    .chapter4{
+    .chapter4 {
         margin-top: 9.6rem;
     }
-    .chapter5{
+    .chapter5 {
         margin-top: 10.1rem;
     }
     .chapterTitle {
@@ -389,7 +368,6 @@
         font-size: 1.25rem;
         line-height: 2rem;
     }
-
     .chapterLead {
         width: 100%;
         font-size: 1rem;
@@ -402,7 +380,6 @@
         overflow: unset;
         z-index: -1;
     }
-
     .chapterSvg {
         position: absolute;
         top: -11.4rem;
@@ -411,60 +388,63 @@
         width: 100%;
         margin: 0;
     }
-   
-
     .chart {
-        width: calc(100% + 2.5rem);
-        margin: 0 -1.25rem;
+        /* width: calc(100% + 2.5rem);
+        margin: 0 -1.25rem; */
+        margin: 0 auto;
+        display: flex;
         max-height: 22rem;
+        max-width: 21rem;
     }
-    .chart svg{
-        overflow: visible;
+    .chart svg {
+        /* overflow: visible; */
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
     }
-    .step{
+    .step {
         margin-top: 0;
         margin-bottom: 2rem;
         padding: 0;
     }
-    .step:first-child{
-       margin-top: 2.63rem !important; 
+    .step:first-child {
+        margin-top: 2.63rem !important;
     }
-    .step:last-child{
+    .step:last-child {
         margin-bottom: 0 !important;
     }
     .interactivitylabel {
-        bottom: -0.5rem;
-        left: 1.25rem;
+        bottom: -1.5rem;
+        left: 0;
     }
-
     .interactivitylabel img {
         height: 100%;
         width: auto;
     }
-    .factoid{
+    .factoid {
         margin-right: 0;
     }
-    .tip{
+    .tip {
         width: 11.8rem;
     }
-    .toopltipNumber{
+    .toopltipNumber {
         padding-left: 0.3rem;
     }
-    #chart5 .labelRed{
+    #chart5 .labelRed {
         font-size: 0.5rem;
     }
-    #chart5 .tick text{
+    #chart5 .tick text {
         font-size: 0.5rem;
     }
-    #chart5 #labelRed7{
+    #chart5 #labelRed7 {
         transform: translate(0, -0.3rem);
     }
-    #chart5 #labelRed9{
+    #chart5 #labelRed9 {
         transform: translate(-0.7rem, 0.1rem);
     }
-    #chart5 #labelRed13{
+    #chart5 #labelRed13 {
         text-anchor: end;
-        transform: translate(1rem, 0rem);
+        transform: translate(0.9rem, 0rem);
     }
     #chartTitle5 .redText {
         background: none;
@@ -473,7 +453,7 @@
         border-radius: 4px;
         color: var(--white);
     }
-    #chartTitle5 .redText span{
+    #chartTitle5 .redText span {
         background-color: var(--red);
         padding: 2px 6px;
         margin: 0 0.2rem 0 0;
@@ -481,9 +461,9 @@
         color: var(--white);
     }
 }
+
 @media only screen and (max-height: 37.5rem) {
     .intTitle {
-        
         margin-bottom: 14.7rem;
     }
 }
