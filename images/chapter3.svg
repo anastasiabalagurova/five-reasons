@@ -35,7 +35,7 @@
 	.svgIcon10{
 		transition-delay: 3s;
 	}
-	@media only screen and (max-width: 768px) {
+	@media only screen and (max-width: 767px) {
 		.svgIcon5{
 			transform: translateX(-4rem) !important;
 		}

@@ -1,33 +1,39 @@
-const elemH = document.getElementById("chart1").getBoundingClientRect().height
-const elemW = document.getElementById("chart1").getBoundingClientRect().width
+// const elemH = document.getElementById("chart1").getBoundingClientRect().height
+// const elemW = document.getElementById("chart1").getBoundingClientRect().width
+let elemH = 450;
+let elemW = 700;
+
+let margin = {},
+width=0,
+height=0;
 
 
-async function start() {
-  
-}
 
-
-
-
-
-let margin = {
-    top: 20,
-    right: 25,
-    bottom: 45,
-    left: 0
-  },
+const setOptions = () =>{
+  if(window.innerWidth < 767){
+    margin = {
+      top: 30,
+      right: 0,
+      bottom: 20,
+      left: 0
+    };
+    elemH = 352;
+    elemW = 335;
+  }else{
+    margin = {
+      top: 20,
+      right: 0,
+      bottom: 65,
+      left: 0
+    };
+    elemH = 450;
+    elemW = 700;
+  }
   width = elemW - margin.left - margin.right,
   height = elemH - margin.top - margin.bottom;
-if(window.innerWidth < 768){
-  margin = {
-    top: 20,
-    right: 20,
-    bottom: 40,
-    left: 20
-  };
-  width = elemW - margin.left - margin.right;
-  height = elemH - margin.top - margin.bottom;
 }
+setOptions();
+window.addEventListener('resize', setOptions);
 //Draw SVG
 function drawSvg() {
   for (i = 1; i < 6; i++) {
@@ -35,7 +41,7 @@ function drawSvg() {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-      .attr("viewport", "0 0" + " " + width + " " + height)
+      .attr("viewBox", "0 0" + " " + elemW + " " + height)
   }
 }
 
@@ -43,8 +49,8 @@ function drawSvg() {
 function drawChart1() {
   const svg = d3.select("#chart1")
     .select("svg")
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .append("g");
+    // .attr("transform", `translate(${margin.left},0)`);
 
 
   // Parse the Data
@@ -54,7 +60,7 @@ function drawChart1() {
     // Add X axis
     const x = d3.scaleLinear()
       .domain([0, 100])
-      .range([0, width - 100]);
+      .range([0, width - 115]);
 
     // Y axis
     const y = d3.scaleBand()
@@ -158,7 +164,7 @@ function updateChart1() {
 
     const xSorted = d3.scaleLinear()
       .domain([0, 100])
-      .range([0, width - 100]);
+      .range([0, width - 115]);
 
     const ySorted = d3.scaleBand()
       .range([0, height])
@@ -169,6 +175,8 @@ function updateChart1() {
       .selectAll(".myRect")
       .transition()
       .duration(800)
+      
+      .style("opacity", 1)
       .attr("width", d => xSorted(d.Value2))
       .attr("y", (d) => ySorted(d.Country))
 
@@ -203,7 +211,7 @@ function returnChart1() {
     // Add X axis
     const x = d3.scaleLinear()
       .domain([0, 100])
-      .range([0, width - 100]);
+      .range([0, width - 115]);
 
     // Y axis
     const y = d3.scaleBand()
@@ -226,6 +234,7 @@ function returnChart1() {
       })
       .transition()
       .duration(800)
+      .style("opacity", 1)
       .attr("x", function (d) {
         return x(parseFloat(d.Value)) + 120;
       })
@@ -248,8 +257,8 @@ async function drawChart2() {
 
   const svg = d3.select("#chart2")
     .select("svg")
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .append("g");
+    // .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // Parse the Data
   d3.csv("data/chart2.csv").then(function (data) {
@@ -439,8 +448,8 @@ async function drawChart3() {
 
   const svg = d3.select("#chart3")
     .select("svg")
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .append("g");
+    // .attr("transform", `translate(${margin.left},${margin.top})`);
 
 
   // Parse the Data
@@ -455,7 +464,7 @@ async function drawChart3() {
 
     // X axis
     let range = width / 2;
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 767){
       range = width;
     }
     const x = d3.scaleBand()
@@ -474,7 +483,7 @@ async function drawChart3() {
 
     let eventName= "mouseover";
     let intLabelText= "Наведите на график";
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 767){
       eventName= "click";
       document.addEventListener('scroll', ()=>{
         tip.style("opacity", 0);
@@ -572,8 +581,8 @@ async function drawChart4() {
 
   const svg = d3.select("#chart4")
     .select("svg")
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .append("g");
+    // .attr("transform", `translate(${margin.left},${margin.top})`);
 
 
   // Parse the Data
@@ -587,7 +596,7 @@ async function drawChart4() {
 
     // X axis
     let range = width / 2;
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 767){
       range = width;
     }
     const x = d3.scaleBand()
@@ -666,8 +675,8 @@ async function drawChart5() {
 
   const svg = d3.select("#chart5")
     .select("svg")
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top+20})`);
+    .append("g");
+    // .attr("transform", `translate(${margin.left},${margin.top+20})`);
 
   // Parse the Data
   d3.csv("data/chart5.csv").then(function (data) {
@@ -842,4 +851,4 @@ async function drawChart5() {
   })
 }
 
-drawSvg()
+// drawSvg()

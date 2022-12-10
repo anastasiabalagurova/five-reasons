@@ -11,7 +11,7 @@ svgsAnimate.forEach((element, index) => {
 
 const resizeHandlerSvgs = () => {
     svgsAnimate.forEach((element, index) => {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 767) {
                 if (!mobileLoaded) {
                     element.setAttribute("data", `.${sourceUrls[index]}-mob.svg`);
                 }
@@ -22,7 +22,7 @@ const resizeHandlerSvgs = () => {
             }
         
     });
-	if (window.innerWidth < 768) {
+	if (window.innerWidth < 767) {
 		mobileLoaded = true;
 		descLoaded = false;
 	} else {
