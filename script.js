@@ -47,22 +47,14 @@ d3.csv("data/chart5.csv").then(function (data) {
     let currentIndex = response.index;
     let currentDirection = response.direction;
 
-    console.log(currentIndex)
-
-    if(currentIndex == 0 && currentDirection == "up" && triggerStatus["chart1"]){
+     if(currentIndex == 0 && currentDirection == "up" && triggerStatus["chart1"]){
       returnChart1()
     }
 
-
     if(currentIndex == 1 && triggerStatus["chart1"]){
       updateChart1()
-      
     }
-
-
 }
-
-
 })
 
 

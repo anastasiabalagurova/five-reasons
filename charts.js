@@ -430,6 +430,7 @@ async function drawChart3() {
   const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
   d3.formatDefaultLocale(locale);
   const f = d3.format(",.5r");
+  const f2 = d3.format(",");
 
   const svg = d3.select("#chart3")
     .select("svg")
@@ -491,7 +492,7 @@ async function drawChart3() {
           xValue = `${event.clientX - document.querySelector('.tip').offsetWidth}px`;
         }
         d3.select(".tip")
-          .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + d.Value4 + "</span>")
+          .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + f2(d.Value2) + "</span>")
           .style("left", xValue)
           .style("top", `${event.clientY}px`)
           .style("opacity", 1);
