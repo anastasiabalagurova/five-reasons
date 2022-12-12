@@ -1,14 +1,14 @@
 let elemH = 450;
 let elemW = 700;
 
+let docLang = document.documentElement.lang;
+
 let margin = {},
-width=0,
-height=0;
+  width = 0,
+  height = 0;
 
-
-
-const setOptions = () =>{
-  if(window.innerWidth < 767){
+const setOptions = () => {
+  if (window.innerWidth < 767) {
     margin = {
       top: 30,
       right: 0,
@@ -17,7 +17,7 @@ const setOptions = () =>{
     };
     elemH = 352;
     elemW = 335;
-  }else{
+  } else {
     margin = {
       top: 20,
       right: 0,
@@ -28,7 +28,7 @@ const setOptions = () =>{
     elemW = 700;
   }
   width = elemW - margin.left - margin.right,
-  height = elemH - margin.top - margin.bottom;
+    height = elemH - margin.top - margin.bottom;
 }
 setOptions();
 window.addEventListener('resize', setOptions);
@@ -53,17 +53,25 @@ function drawChart1() {
   // Parse the Data
   d3.csv("data/chart1.csv").then(function (data) {
 
-
     // Add X axis
     const x = d3.scaleLinear()
       .domain([0, 100])
       .range([0, width - 115]);
 
     // Y axis
+
     const y = d3.scaleBand()
       .range([0, height])
       .domain(data.map(d => d.Country))
       .padding(0.1);
+
+
+    const yEn = d3.scaleBand()
+      .range([0, height])
+      .domain(data.map(d => d.CountryEn))
+      .padding(0.1);
+
+
 
     // Bars
     svg.selectAll("myRect")
@@ -71,9 +79,16 @@ function drawChart1() {
       .join("rect")
       .attr("class", "myRect")
       .attr("x", x(0) + 100)
-      .attr("y", d => y(d.Country))
+      .attr("y", function (d) {
+        if (docLang == "ru") return y(d.Country)
+        if (docLang == "en") return yEn(d.CountryEn)
+      })
       .attr("width", d => x(0))
-      .attr("height", y.bandwidth())
+      .attr("height", function (d) {
+        if (docLang == "ru") return y.bandwidth()
+        if (docLang == "en") return yEn.bandwidth()
+      })
+
       .attr("fill", "#E6E9EF")
       .attr("id", (d, i) => {
         return "barCountry" + i
@@ -98,7 +113,8 @@ function drawChart1() {
 
       })
       .attr("y", function (d) {
-        return y(d.Country) + y.bandwidth() / 2 + 3;
+        if (docLang == "ru") return y(d.Country) + y.bandwidth() / 2 + 3;
+        if (docLang == "en") return yEn(d.CountryEn) + yEn.bandwidth() / 2 + 3;
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
@@ -117,19 +133,22 @@ function drawChart1() {
         return i * 130
       })
 
+
+
     // //draw Y axis
     var yAxis = svg.append("g")
       .attr("class", "yaxis")
       .attr("transform", "translate(100 0)")
-      .call(d3.axisLeft(y).tickSize(0))
+
       .style("font-family", "Montserrat")
 
+    if (docLang == "ru") yAxis.call(d3.axisLeft(y).tickSize(0))
+    if (docLang == "en") yAxis.call(d3.axisLeft(yEn).tickSize(0))
 
     d3.select("#chart1")
       .selectAll(".tick")
       .selectAll("text")
       .attr("transform", "translate(-3 0)")
-
 
     d3.select("#labelCountryRed7")
       .attr("fill", "#E30613")
@@ -143,28 +162,51 @@ function drawChart1() {
 function updateChart1() {
   d3.csv("data/chart1.csv").then(function (data) {
 
+
+
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
-    chartDesc.textContent = 'Доля топ-5 ритейлеров, 2021, % ';
-    chartSource.textContent = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
+
+
+    if (docLang == "ru") {
+      chartDesc.textContent = 'Доля топ-5 ритейлеров, 2021, % ';
+      chartSource.textContent = 'Источник: Euromonitor, Infoline, анализ Компании, 2021';
+
+    }
+    if (docLang == "en") {
+      chartDesc.textContent = 'Share of top-5 players in grocery retail, 2021, %';
+      chartSource.textContent = 'Source: Euromonitor, Infoline, Magnit analysis, 2021';
+    }
 
     const xSorted = d3.scaleLinear()
       .domain([0, 100])
       .range([0, width - 115]);
+
 
     const ySorted = d3.scaleBand()
       .range([0, height])
       .domain((data.sort((a, b) => d3.descending(a.Value2, b.Value2)).map(d => d.Country)))
       .padding(0.1);
 
+    const ySortedEn = d3.scaleBand()
+      .range([0, height])
+      .domain((data.sort((a, b) => d3.descending(a.Value2, b.Value2)).map(d => d.CountryEn)))
+      .padding(0.1);
+
     const svg = d3.select("#chart1")
       .selectAll(".myRect")
       .transition()
       .duration(800)
-      
       .style("opacity", 1)
       .attr("width", d => xSorted(d.Value2))
-      .attr("y", (d) => ySorted(d.Country))
+      .attr("y", function (d) {
+        if (docLang == "ru") {
+          return ySorted(d.Country)
+        }
+        if (docLang == "en") {
+          return ySortedEn(d.CountryEn)
+        }
+      })
 
 
     d3.selectAll(".labelCountry")
@@ -176,14 +218,23 @@ function updateChart1() {
       .attr("x", function (d) {
         return xSorted(parseFloat(d.Value2)) + 120;
       })
-      .attr("y", (d, i) => ySorted(d.Country) + ySorted.bandwidth() / 2 + 3)
-
-
+      .attr("y", function (d, i) {
+        if (docLang == "ru") {
+          return ySorted(d.Country) + ySorted.bandwidth() / 2 + 3
+        }
+        if (docLang == "en") {
+          return ySortedEn(d.CountryEn) + ySortedEn.bandwidth() / 2 + 3
+        }
+      })
 
     d3.select(".yaxis")
       .transition()
       .duration(800)
-      .call(d3.axisLeft(ySorted).tickSize(0))
+
+    if (docLang == "ru") yAxis.call(d3.axisLeft(ySorted).tickSize(0))
+    if (docLang == "en") yAxis.call(d3.axisLeft(ySortedEn).tickSize(0))
+
+
   })
 }
 
@@ -191,8 +242,19 @@ function returnChart1() {
   d3.csv("data/chart1.csv").then(function (data) {
     const chartDesc = document.querySelector('#chartTitle1 .chartDesc');
     const chartSource = document.querySelector('#chartTitle1 .source');
-    chartDesc.textContent = 'Доля современного ритейла, 2021, % ';
-    chartSource.textContent = 'Источник: Euromonitor, 2021';
+
+
+    if (docLang == "ru") {
+      chartDesc.textContent = 'Доля современного ритейла, 2021, % ';
+      chartSource.textContent = 'Источник: Euromonitor, 2021';
+
+    }
+    if (docLang == "en") {
+      chartDesc.textContent = 'Modern retail share in grocery retail, 2021, %';
+      chartSource.textContent = 'Source: Euromonitor, 2021';
+    }
+
+
 
     // Add X axis
     const x = d3.scaleLinear()
@@ -205,13 +267,25 @@ function returnChart1() {
       .domain(data.map(d => d.Country))
       .padding(0.1);
 
+    const yEn = d3.scaleBand()
+      .range([0, height])
+      .domain(data.map(d => d.CountryEn))
+      .padding(0.1);
+
 
     const svg = d3.select("#chart1")
       .selectAll(".myRect")
       .transition()
       .duration(800)
       .attr("width", d => x(d.Value)) // always equal to 0
-      .attr("y", (d) => y(d.Country))
+      .attr("y", function (d, i) {
+        if (docLang == "ru") {
+          return y(d.Country)
+        }
+        if (docLang == "en") {
+          return yEn(d.CountryEn)
+        }
+      })
 
 
     d3.selectAll(".labelCountry")
@@ -224,14 +298,23 @@ function returnChart1() {
       .attr("x", function (d) {
         return x(parseFloat(d.Value)) + 120;
       })
-      .attr("y", (d) => y(d.Country) + y.bandwidth() / 2 + 3)
+      .attr("y", function (d, i) {
+        if (docLang == "ru") {
+          return y(d.Country) + y.bandwidth() / 2 + 3
+        }
+        if (docLang == "en") {
+          return yEn(d.CountryEn) + y.bandwidth() / 2 + 3
+        }
+      })
 
 
 
     d3.select(".yaxis")
       .transition()
       .duration(800)
-      .call(d3.axisLeft(y).tickSize(0))
+
+    if (docLang == "ru") yAxis.call(d3.axisLeft(y).tickSize(0))
+    if (docLang == "en") yAxis.call(d3.axisLeft(yEn).tickSize(0))
   })
 }
 
@@ -244,7 +327,6 @@ async function drawChart2() {
   const svg = d3.select("#chart2")
     .select("svg")
     .append("g");
-    // .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // Parse the Data
   d3.csv("data/chart2.csv").then(function (data) {
@@ -253,8 +335,6 @@ async function drawChart2() {
     const y = d3.scaleLinear()
       .domain([0, 20])
       .range([height, 0]);
-    // svg.append("g")
-    //   .call(d3.axisLeft(y));
 
     // X axis
     const x = d3.scaleBand()
@@ -316,7 +396,6 @@ async function drawChart2() {
         return i * 130
       })
 
-
     //Grey line
     svg.append("path")
       .datum(data)
@@ -356,7 +435,8 @@ async function drawChart2() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (f(d.Value2) + "%");
+        if (docLang == "ru") return f(d.Value2) + "%";
+        if (docLang == "en") return d.Value2 + "%";
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -382,7 +462,8 @@ async function drawChart2() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (f(d.Value) + "%");
+        if (docLang == "ru") return f(d.Value) + "%";
+        if (docLang == "en") return d.Value + "%";
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -427,6 +508,8 @@ async function drawChart2() {
 }
 
 async function drawChart3() {
+  const f1En = d3.format(",.5r")
+  const f2En = d3.format(",.4r")
   const locale = await d3.json("https://cdn.jsdelivr.net/npm/d3-format@3/locale/ru-RU.json");
   d3.formatDefaultLocale(locale);
   const f = d3.format(",.5r");
@@ -435,8 +518,6 @@ async function drawChart3() {
   const svg = d3.select("#chart3")
     .select("svg")
     .append("g");
-    // .attr("transform", `translate(${margin.left},${margin.top})`);
-
 
   // Parse the Data
   d3.csv("data/chart3.csv").then(function (data) {
@@ -450,7 +531,7 @@ async function drawChart3() {
 
     // X axis
     let range = width / 2;
-    if(window.innerWidth < 767){
+    if (window.innerWidth < 767) {
       range = width;
     }
     const x = d3.scaleBand()
@@ -467,14 +548,21 @@ async function drawChart3() {
       .style("z-index", "10")
       .style("opacity", "0")
 
-    let eventName= "mouseover";
-    let intLabelText= "Наведите на график";
-    if(window.innerWidth < 767){
-      eventName= "click";
-      document.addEventListener('scroll', ()=>{
+    let eventName = "mouseover";
+    let intLabelText;
+    if (docLang == "ru") intLabelText = "Наведите на график";
+    if (docLang == "en") intLabelText = "Hover over the chart";
+
+    if (window.innerWidth < 767) {
+      eventName = "click";
+      document.addEventListener('scroll', () => {
         tip.style("opacity", 0);
       });
-      intLabelText= "Нажмите на график";
+
+      if (docLang == "ru") intLabelText = "Нажмите на график";
+      if (docLang == "en") intLabelText = "Hover over the chart";
+
+
     }
     // Bars
     svg.selectAll("mybar")
@@ -488,14 +576,17 @@ async function drawChart3() {
       .on(eventName, function (event, d) {
         let left = document.querySelector('.tip').offsetWidth + event.clientX;
         let xValue = `${event.clientX}px`;
-        if(left > window.innerWidth){
+        if (left > window.innerWidth) {
           xValue = `${event.clientX - document.querySelector('.tip').offsetWidth}px`;
         }
         d3.select(".tip")
-          .html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + f2(d.Value2) + "</span>")
           .style("left", xValue)
           .style("top", `${event.clientY}px`)
           .style("opacity", 1);
+
+        if (docLang == "ru") d3.select(".tip").html("Количество открытых магазинов (gross)" + "<span class = 'toopltipNumber'>" + f2(d.Value2) + "</span>")
+        if (docLang == "en") d3.select(".tip").html("Number of opened stores (gross)" + "<span class = 'toopltipNumber'>" + f2En(d.Value2) + "</span>")
+
       })
       .on("mouseout", function () {
         tip.style("opacity", 0);
@@ -512,7 +603,7 @@ async function drawChart3() {
     //interactivity icon
     d3.select("#chart3")
       .append("div")
-      .html("<img src='images/iconInt.svg'><span class='intLabelText'>"+ intLabelText +"</span>")
+      .html("<img src='images/iconInt.svg'><span class='intLabelText'>" + intLabelText + "</span>")
       .classed("interactivitylabel", true)
 
 
@@ -521,7 +612,10 @@ async function drawChart3() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return f(d.Value);
+
+        if (docLang == "ru") return f(d.Value);
+        if (docLang == "en") return f1En(d.Value);
+
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -568,8 +662,6 @@ async function drawChart4() {
   const svg = d3.select("#chart4")
     .select("svg")
     .append("g");
-    // .attr("transform", `translate(${margin.left},${margin.top})`);
-
 
   // Parse the Data
   d3.csv("data/chart4.csv").then(function (data) {
@@ -579,10 +671,9 @@ async function drawChart4() {
       .domain([0, 17])
       .range([height, 0]);
 
-
     // X axis
     let range = width / 2;
-    if(window.innerWidth < 767){
+    if (window.innerWidth < 767) {
       range = width;
     }
     const x = d3.scaleBand()
@@ -613,7 +704,8 @@ async function drawChart4() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return f(d.Value) + "%";
+        if (docLang == "ru") return f(d.Value) + "%";
+        if (docLang == "en") return d.Value + "%";
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -661,7 +753,6 @@ async function drawChart5() {
   const svg = d3.select("#chart5")
     .select("svg")
     .append("g");
-    // .attr("transform", `translate(${margin.left},${margin.top+20})`);
 
   // Parse the Data
   d3.csv("data/chart5.csv").then(function (data) {
@@ -682,7 +773,6 @@ async function drawChart5() {
       .padding(0.2)
 
 
-
     // Bars
     svg.selectAll("#mybar5")
       .data(data)
@@ -700,7 +790,6 @@ async function drawChart5() {
       .delay((d, i) => {
         return i * 100
       })
-
 
 
     //dots
@@ -748,7 +837,8 @@ async function drawChart5() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return f2(d.Value);
+        if (docLang == "ru") return f2(d.Value);
+        if (docLang == "en") return d.Value;
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -774,7 +864,8 @@ async function drawChart5() {
       .data(data)
       .join("text")
       .text(function (d) {
-        return (f(d.Value2) + "%");
+        if (docLang == "ru") return f(d.Value2) + "%";
+        if (docLang == "en") return d.Value2 + "%";
       })
       .attr("x", function (d) {
         return x(d.Year) + x.bandwidth() / 2;
@@ -799,10 +890,8 @@ async function drawChart5() {
       })
 
 
-
     d3.select("#labelRed9")
       .attr("transform", "translate(-20 15)");
-
 
     d3.select("#labelRed5")
       .attr("transform", "translate(-5 0)");
@@ -817,7 +906,6 @@ async function drawChart5() {
       .attr("transform", "translate(15 3)");
 
 
-
     //draw x axis
     svg.append("g")
       .attr("transform", `translate(0,${height})`)
@@ -829,10 +917,5 @@ async function drawChart5() {
       })
       .style("text-anchor", "end")
       .style('font-family', 'Montserrat');
-
-
-
-
   })
 }
-
