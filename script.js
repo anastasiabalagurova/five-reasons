@@ -252,8 +252,8 @@ function updateChart1() {
       .transition()
       .duration(800)
 
-    if (docLang == "ru") yAxis.call(d3.axisLeft(ySorted).tickSize(0))
-    if (docLang == "en") yAxis.call(d3.axisLeft(ySortedEn).tickSize(0))
+    if (docLang == "ru") d3.select(".yaxis").call(d3.axisLeft(ySorted).tickSize(0))
+    if (docLang == "en") d3.select(".yaxis").call(d3.axisLeft(ySortedEn).tickSize(0))
 
 
   })
@@ -334,8 +334,8 @@ function returnChart1() {
       .transition()
       .duration(800)
 
-    if (docLang == "ru") yAxis.call(d3.axisLeft(y).tickSize(0))
-    if (docLang == "en") yAxis.call(d3.axisLeft(yEn).tickSize(0))
+    if (docLang == "ru") d3.select(".yaxis").call(d3.axisLeft(y).tickSize(0))
+    if (docLang == "en") d3.select(".yaxis").call(d3.axisLeft(yEn).tickSize(0))
   })
 }
 
