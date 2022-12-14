@@ -47,7 +47,7 @@ body {
 /* intro */
 
 .intro {
-  max-height: 592px;
+  /* max-height: 592px; */
   text-align: center;
   margin: 0;
   display: flex;
@@ -550,16 +550,6 @@ margin:0;
 
 .footerTemp img:nth-child(2) {
   display: none;
-}
-
-.intro {
-  max-height: 592px;
-  text-align: center;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .stickyTagContainer {
