@@ -47,7 +47,7 @@ body {
 /* intro */
 
 .intro {
-  /* max-height: 592px; */
+  max-height: 592px;
   text-align: center;
   margin: 0;
   display: flex;
@@ -56,13 +56,18 @@ body {
   align-items: center;
 }
 
+.intro .imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
 
 .backgroundImage {
   z-index: -10;
   width: 100%;
   display: block;
   position: relative;
-
 }
 
 .intLogo {
