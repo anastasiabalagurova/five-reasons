@@ -77,11 +77,6 @@
 	.svgIcon24{
 		transition-delay: 6s;
 	}
-	@media only screen and (max-width: 767px) {
-		.svgIcon8{
-			display: none;
-		}
-	}
   </style>
 	<g>
 		<g class="svgIcon svgIcon1">
