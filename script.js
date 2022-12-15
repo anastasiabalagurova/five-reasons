@@ -951,8 +951,8 @@ function init() {
     })
     .onStepEnter(handleStepEnter);
 
-  // setup resize event
-  window.addEventListener("resize", scroller.resize);
+  // // setup resize event
+  // window.addEventListener("resize", scroller.resize);
 }
 // kick things off
 init();
