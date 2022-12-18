@@ -17,16 +17,18 @@
 <body>
     <div class="content">
         <div class="container container--wide">
-            <div class="backWrapper">
+            <!-- <div class="backWrapper">
                 <a class="back" href="https://www.magnit.com/ru/shareholders-and-investors/private-investors/">
                     <img src="images/icon.svg" id="backIcon">
                     <div>Раздел «Частным инвесторам»</div>
                 </a>
-            </div>
+            </div> -->
             <div class="menuTemp">
                 <img src="images/menuTemp.jpg" width="100%">
                 <img src="images/menuTempMobile.jpg" width="100%">
             </div>
+            <div class="sidebar"></div>
+            <div class="tabContent">
             <!-- PROJECT STARTS HERE -->
             <section class="intro" id="intro">
                 <div class="intLogo"><img src="images/logo.svg"></div>
@@ -75,13 +77,17 @@
                         и консолидации</div>
                 </section>
 
-                <section class="scrolly">
-                    <div class="sticky-thing sticky-thing-mobile">
-                        <div class="chartTitle" id="chartTitle1"><span class="chartDesc"> Доля современного ритейла,
-                                2021, % </span><span class="tooltip"><img src="images/iconI.svg"><span
-                                    class="tooltiptext source">Источник: Euromonitor, 2021</span></span>
+                <section class="scrolly scrolly-mobile">
+                    <div class="sticky-thing-wrapper sticky-thing-wrapper-mobile">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing sticky-thing-mobile">
+                                <div class="chartTitle" id="chartTitle1"><span class="chartDesc"> Доля современного ритейла,
+                                        2021, % </span><span class="tooltip"><img src="images/iconI.svg"><span
+                                            class="tooltiptext source">Источник: Euromonitor, 2021</span></span>
+                                </div>
+                                <div class="chart" id="chart1"></div>
+                            </div>
                         </div>
-                        <div class="chart" id="chart1"></div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -117,11 +123,15 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle2">Рост <span class="redText">продаж «Магнита»</span>
-                            в сравнении с ростом <span class="greyText">оборота продуктового ритейла</span></div>
-                        <div class="chartNote">год к году, с учетом НДС</div>
-                        <div class="chart" id="chart2"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle2">Рост <span class="redText">продаж «Магнита»</span>
+                                    в сравнении с ростом <span class="greyText">оборота продуктового ритейла</span></div>
+                                <div class="chartNote">год к году, с учетом НДС</div>
+                                <div class="chart" id="chart2"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -166,9 +176,13 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle3">Количество магазинов «Магнит»</div>
-                        <div class="chart" id="chart3"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle3">Количество магазинов «Магнит»</div>
+                                <div class="chart" id="chart3"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -219,15 +233,19 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle4"><span class="tooltip"><span
-                                    class="tooltipWord">ROIC</span><img src="images/iconI.svg"><span
-                                    class="tooltiptext tooltiptextLeft">ROIC (Возврат на инвестированный капитал) =
-                                    (Операционная
-                                    прибыль — Расходы по налогу на прибыль) / (средняя величина чистого долга + средний
-                                    собственный капитал)</span>
-                            </span></div>
-                        <div class="chart" id="chart4"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle4"><span class="tooltip"><span
+                                            class="tooltipWord">ROIC</span><img src="images/iconI.svg"><span
+                                            class="tooltiptext tooltiptextLeft">ROIC (Возврат на инвестированный капитал) =
+                                            (Операционная
+                                            прибыль — Расходы по налогу на прибыль) / (средняя величина чистого долга + средний
+                                            собственный капитал)</span>
+                                    </span></div>
+                                <div class="chart" id="chart4"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -279,12 +297,16 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing" id="sticky5">
-                        <div class="chartTitle" id="chartTitle5"><span class='greyText'>Выплачено дивидендов, млрд
-                                руб.</span> и <span class='redText'><span>дивидендная доходность на конец</span> <span>
-                                    периода, %</span></span>
+                    <div class="sticky-thing-wrapper ">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing" id="sticky5">
+                                <div class="chartTitle" id="chartTitle5"><span class='greyText'>Выплачено дивидендов, млрд
+                                        руб.</span> и <span class='redText'><span>дивидендная доходность на конец</span> <span>
+                                            периода, %</span></span>
+                                </div>
+                                <div class="chart" id="chart5"></div>
+                            </div>
                         </div>
-                        <div class="chart" id="chart5"></div>
                     </div>
                     <article>
 
@@ -307,7 +329,7 @@
 
 
                         <div class="step" data-step="1">
-                            <p>Создание дополнительной стоимости для акционеров для стабильно высоких дивидендных выплат
+                            <p>Создание дополнительной стоимости для акционеров для обеспечения возможности осуществления стабильно высоких дивидендных выплат
                             </p>
                         </div>
                         <div class="step" data-step="1">
@@ -332,13 +354,15 @@
                 </div>
                 <div class="tooltipText"></div>
             </div>
-            <script src="script.js"></script>
-        </div>
+            <script src="smoothscroll.js"></script>  
+            <script src="script.js"></script>  
         <!-- PROJECT ENDS HERE -->
+    </div>
         <div class="footerTemp">
             <img src="images/footerTemp.png" width="100%">
             <img src="images/footerTempMobile.png" width="100%">
         </div>
+    </div>
     </div>
 </body>
 

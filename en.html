@@ -17,16 +17,18 @@
 <body>
     <div class="content">
         <div class="container container--wide">
-            <div class="backWrapper">
+            <!-- <div class="backWrapper">
                 <a class="back" href="https://www.magnit.com/en/shareholders-and-investors/private-investors/">
                     <img src="images/icon.svg" id="backIcon">
                     <div>Back to Private investors</div>
                 </a>
-            </div>
+            </div> -->
             <div class="menuTemp">
                 <img src="images/menuTemp-en.jpg" width="100%">
                 <img src="images/menuTempMobile-en.jpg" width="100%">
             </div>
+             <div class="sidebar"></div>
+            <div class="tabContent">
             <!-- PROJECT STARTS HERE -->
             <section class="intro" id="intro">
                 <div class="intLogo"><img src="images/logo.svg"></div>
@@ -73,13 +75,17 @@
                     <div class="chapterLead">We offer exposure to a sizeable market with potential for further organic expansion and consolidation</div>
                 </section>
 
-                <section class="scrolly">
-                    <div class="sticky-thing sticky-thing-mobile">
-                        <div class="chartTitle" id="chartTitle1"><span class="chartDesc">Modern retail share in grocery retail,
-                            2021, %</span><span class="tooltip"><img src="images/iconI.svg"><span
-                                    class="tooltiptext tooltiptextLeft source">Source: Euromonitor, 2021</span></span>
+                <section class="scrolly scrolly-mobile">
+                    <div class="sticky-thing-wrapper sticky-thing-wrapper-mobile">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing sticky-thing-mobile">
+                                <div class="chartTitle" id="chartTitle1"><span class="chartDesc">Modern retail share in grocery retail,
+                                    2021, %</span><span class="tooltip"><img src="images/iconI.svg"><span
+                                            class="tooltiptext tooltiptextLeft source">Source: Euromonitor, 2021</span></span>
+                                </div>
+                                <div class="chart" id="chart1"></div>
+                            </div>
                         </div>
-                        <div class="chart" id="chart1"></div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -111,11 +117,15 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle2"><span class="redText">Magnit sales</span> 
-                            growth and <span class="greyText">Russian food retail sales</span> growth</div>
-                        <div class="chartNote">YoY, incl. VAT</div>
-                        <div class="chart" id="chart2"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle2"><span class="redText">Magnit sales</span> 
+                                    growth and <span class="greyText">Russian food retail sales</span> growth</div>
+                                <div class="chartNote">YoY, incl. VAT</div>
+                                <div class="chart" id="chart2"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -153,9 +163,13 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle3">Number of Magnit stores</div>
-                        <div class="chart" id="chart3"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle3">Number of Magnit stores</div>
+                                <div class="chart" id="chart3"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -202,12 +216,16 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing">
-                        <div class="chartTitle" id="chartTitle4"><span class="tooltip"><span
-                                    class="tooltipWord">ROIC</span><img src="images/iconI.svg"><span
-                                    class="tooltiptext tooltiptextLeft">ROIC = (EBIT – Income Tax) / (Avg. Net debt + Avg. Equity)</span>
-                            </span></div>
-                        <div class="chart" id="chart4"></div>
+                    <div class="sticky-thing-wrapper">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing">
+                                <div class="chartTitle" id="chartTitle4"><span class="tooltip"><span
+                                            class="tooltipWord">ROIC</span><img src="images/iconI.svg"><span
+                                            class="tooltiptext tooltiptextLeft">ROIC = (EBIT – Income Tax) / (Avg. Net debt + Avg. Equity)</span>
+                                    </span></div>
+                                <div class="chart" id="chart4"></div>
+                            </div>
+                        </div>
                     </div>
                     <article>
                         <div class="step" data-step="1">
@@ -244,10 +262,14 @@
                 </section>
 
                 <section class="scrolly">
-                    <div class="sticky-thing" id="sticky5">
-                        <div class="chartTitle" id="chartTitle5"><span class='greyText'>Total dividends paid, RUB bln</span> and <span class='redText'>Dividend yield, % as at the end of period</span> 
+                    <div class="sticky-thing-wrapper ">
+                        <div class="sticky-thing-container">
+                            <div class="sticky-thing" id="sticky5">
+                                <div class="chartTitle" id="chartTitle5"><span class='greyText'>Total dividends paid, RUB bln</span> and <span class='redText'>Dividend yield, % as at the end of period</span> 
+                                </div>
+                                <div class="chart" id="chart5"></div>
+                            </div>
                         </div>
-                        <div class="chart" id="chart5"></div>
                     </div>
                     <article>
 
@@ -258,7 +280,7 @@
                         <div class="step" data-step="1">
                             <p>Keeping a comfortable level of Net debt/EBITDA leverage at ~1.5x <span
                                     class="tooltip">(<span class="tooltipWord">IAS 17</span><img
-                                        src="images/iconI.svg"><span class="tooltiptext">IAS — International Accounting Standards</span></span>)</p>
+                                        src="images/iconI.svg">)<span class="tooltiptext">IAS — International Accounting Standards</span></span></p>
 
                         </div>
                         <div class="step" data-step="1">
@@ -267,7 +289,7 @@
 
 
                         <div class="step" data-step="1">
-                            <p>Value accretion for shareholders leading to continuous strong dividend payment
+                            <p>Value accretion for shareholders leading to higher capacity for strong dividend payment
                             </p>
                         </div>
                         <div class="step" data-step="1">
@@ -293,12 +315,13 @@
                 <div class="tooltipText"></div>
             </div>
             <script src="script.js"></script>
-        </div>
         <!-- PROJECT ENDS HERE -->
+        </div>
         <div class="footerTemp">
             <img src="images/footerTemp-en.jpg" width="100%">
             <img src="images/footerTempMobile-en.jpg" width="100%">
         </div>
+    </div>
     </div>
 </body>
 
