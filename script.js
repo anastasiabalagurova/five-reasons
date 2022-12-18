@@ -22,7 +22,7 @@ let docLang = document.documentElement.lang;
 let margin = {},
   width = 0,
   height = 0;
-
+let xOffsetChart = 0;
 const setOptions = () => {
   if (window.innerWidth < 767) {
     margin = {
@@ -33,6 +33,7 @@ const setOptions = () => {
     };
     elemH = 352;
     elemW = 335;
+    xOffsetChart = 0;
   } else {
     margin = {
       top: 20,
@@ -42,9 +43,10 @@ const setOptions = () => {
     };
     elemH = 450;
     elemW = 700;
+    xOffsetChart = 20;
   }
   width = elemW - margin.left - margin.right,
-    height = elemH - margin.top - margin.bottom;
+  height = elemH - margin.top - margin.bottom;
 }
 setOptions();
 window.addEventListener('resize', setOptions);
@@ -99,7 +101,7 @@ function drawChart1() {
       .data(data)
       .join("rect")
       .attr("class", "myRect")
-      .attr("x", x(0) + 100)
+      .attr("x", x(0) + 100 + xOffsetChart)
       .attr("y", function (d) {
         if (docLang == "ru") return y(d.Country)
         if (docLang == "en") return yEn(d.CountryEn)
@@ -117,9 +119,9 @@ function drawChart1() {
       .transition()
       .duration(800)
       .attr("width", d => x(d.Value)) // always equal to 0
-      .attr("x", d => x(0) + 100)
+      .attr("x", d => x(0) + 100 + xOffsetChart)
       .delay((d, i) => {
-        return i * 100
+        return i * (100 + xOffsetChart)
       })
 
     //labels
@@ -130,7 +132,7 @@ function drawChart1() {
         return (d.Value) + "%";
       })
       .attr("x", function (d) {
-        return x(parseFloat(d.Value)) + 120;
+        return x(parseFloat(d.Value)) + 120 + xOffsetChart;
 
       })
       .attr("y", function (d) {
@@ -139,7 +141,7 @@ function drawChart1() {
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .attr("fill", "black")
       .attr("text-anchor", "middle")
       .classed("labelCountry", true)
@@ -159,7 +161,7 @@ function drawChart1() {
     // //draw Y axis
     var yAxis = svg.append("g")
       .attr("class", "yaxis")
-      .attr("transform", "translate(100 0)")
+      .attr("transform", `translate(${100 + xOffsetChart} 0)`)
 
       .style("font-family", "Montserrat")
 
@@ -237,7 +239,7 @@ function updateChart1() {
       .transition()
       .duration(800)
       .attr("x", function (d) {
-        return xSorted(parseFloat(d.Value2)) + 120;
+        return xSorted(parseFloat(d.Value2)) + 120 + xOffsetChart;
       })
       .attr("y", function (d, i) {
         if (docLang == "ru") {
@@ -317,7 +319,7 @@ function returnChart1() {
       .duration(800)
       .style("opacity", 1)
       .attr("x", function (d) {
-        return x(parseFloat(d.Value)) + 120;
+        return x(parseFloat(d.Value)) + 120 + xOffsetChart;
       })
       .attr("y", function (d, i) {
         if (docLang == "ru") {
@@ -565,7 +567,7 @@ async function drawChart3() {
       .append("div")
       .attr("class", "tip")
       .style("position", "fixed")
-      .style("z-index", "10")
+      .style("z-index", "100")
       .style("opacity", "0")
 
     let eventName = "mouseover";
@@ -645,7 +647,7 @@ async function drawChart3() {
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .attr("fill", "black")
       .attr("text-anchor", "middle")
       .classed("label", true)
@@ -735,7 +737,7 @@ async function drawChart4() {
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .attr("fill", "black")
       .attr("text-anchor", "middle")
       .classed("label", true)
@@ -868,7 +870,7 @@ async function drawChart5() {
       })
       .attr("font-family", "Montserrat")
       .style("opacity", 0)
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .attr("fill", "black")
       .attr("text-anchor", "middle")
       .classed("label", true)
@@ -894,7 +896,7 @@ async function drawChart5() {
         return y2(parseFloat(d.Value2)) - 170;
       })
       .attr("font-family", "Montserrat")
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .attr("fill", "#E30613")
       .attr("text-anchor", "middle")
       .style("opacity", 0)
@@ -1024,6 +1026,12 @@ window.addEventListener('resize', redrawCharts);
 
 
 const menuTags = document.querySelectorAll('.tag');
+menuTags.forEach(tag => {
+  tag.addEventListener('click', (e)=>{
+    e.preventDefault();
+    document.getElementById(`${tag.getAttribute('href').substring(1)}`).scrollIntoView({behavior: "smooth"});
+  });
+});
 let lastIndex = -1;
 
 function scrollSpy(selector) {
@@ -1143,18 +1151,42 @@ const fixedObserver = (element, container, opt) => {
   }, options);
   observer.observe(container);
 }
-const contentContainer = document.querySelector('.content .container');
-const backBtn = document.querySelector('.backWrapper');
-fixedObserver(backBtn, contentContainer, {
-  rootMargin: '-100% 0% 0% 0%',
-  threshold: 0
-});
+// const contentContainer = document.querySelector('.content .tabContent');
+// const backBtn = document.querySelector('.backWrapper');
+// fixedObserver(backBtn, contentContainer, {
+//   rootMargin: '-100% 0% 0% 0%',
+//   threshold: 0
+// });
 const containerProject = document.querySelector('.containerProject');
 const tagWrapper = document.querySelector('.tagWrapper');
 fixedObserver(tagWrapper, containerProject, {
   rootMargin: '0% 0% -100% 0%',
   threshold: 0
 });
+
+const stickys = document.querySelectorAll('.sticky-thing-wrapper');
+
+stickys.forEach((element, index) => {
+  const wrapper = element.closest('.scrolly');
+
+  
+  document.addEventListener('scroll', stickyProgress);
+  stickyProgress();
+  function stickyProgress(){
+    // if(wrapper.getBoundingClientRect().top < 0 && ((wrapper.getBoundingClientRect().bottom - element.getBoundingClientRect().top - element.offsetHeight > 1) || (wrapper.getBoundingClientRect().bottom - window.innerHeight >= 0) || element.getBoundingClientRect().top > 0)){
+    if(wrapper.getBoundingClientRect().top < 0 && wrapper.getBoundingClientRect().bottom - element.offsetHeight >= 0){
+      element.classList.add('fixed');
+      element.classList.remove('fixed-bottom');
+    } else if(wrapper.getBoundingClientRect().top >= 0){
+      element.classList.remove('fixed');
+      element.classList.remove('fixed-bottom');
+    }else {
+      element.classList.add('fixed-bottom');
+      element.classList.remove('fixed');
+    }
+  }
+});
+
 
 // burger menu
 
