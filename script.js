@@ -943,33 +943,27 @@ async function drawChart5() {
 }
 
 // initialize the scrollama
-var scroller = scrollama();
 
-function init() {
-  scroller
-    .setup({
-      step: ".scrolly article .step",
-      offset: 0.5,
+const scrollamaRework = (element) => {
+  let options = {
+    threshold: 0,
+  }
+  
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateChart1()
+      } else {
+        if (entry.target.getBoundingClientRect().y > 0) {
+          returnChart1()
+        }
+      }
     })
-    .onStepEnter(handleStepEnter);
-
-  // // setup resize event
-  // window.addEventListener("resize", scroller.resize);
+  }, options);
+  observer.observe(element);
 }
-// kick things off
-init();
-
-function handleStepEnter(response) {
-  let currentIndex = response.index;
-  let currentDirection = response.direction;
-  if (currentIndex == 0 && currentDirection == "up" && triggerStatus["chart1"]) {
-    returnChart1()
-  }
-  if (currentIndex == 1 && triggerStatus["chart1"]) {
-    updateChart1()
-  }
-}
-// })
+const stepTrigger = document.querySelector('#changeChart1');
+scrollamaRework(stepTrigger);
 
 function onVisible(element, callback) {
   new IntersectionObserver((entries, observer) => {
@@ -1173,7 +1167,6 @@ stickys.forEach((element, index) => {
   document.addEventListener('scroll', stickyProgress);
   stickyProgress();
   function stickyProgress(){
-    // if(wrapper.getBoundingClientRect().top < 0 && ((wrapper.getBoundingClientRect().bottom - element.getBoundingClientRect().top - element.offsetHeight > 1) || (wrapper.getBoundingClientRect().bottom - window.innerHeight >= 0) || element.getBoundingClientRect().top > 0)){
     if(wrapper.getBoundingClientRect().top < 0 && wrapper.getBoundingClientRect().bottom - element.offsetHeight >= 0){
       element.classList.add('fixed');
       element.classList.remove('fixed-bottom');
@@ -1204,30 +1197,36 @@ function setHeightDynamic() {
   document.querySelector('html').style.setProperty('--vh', `${vh}px`);
 }
 setHeightDynamic();
-const resizeHandler = () => {
+const tooltipPopupInit = () => {
   const tooltips = document.querySelectorAll('.tooltip');
   const tooltipPopup = document.querySelector('.tooltipPopup');
   const tooltipPopupText = document.querySelector('.tooltipPopup .tooltipText');
   const tooltipClose = document.querySelector('.tooltipClose');
   const openPopup = (e) => {
+    if (window.innerWidth < 767){
     tooltipPopupText.textContent = e.target.querySelector('.tooltiptext').textContent;
     tooltipPopup.classList.add('show');
+    }
   }
   const closePopup = () => {
     tooltipPopup.classList.remove('show');
   }
-  if (window.innerWidth < 767) {
+  tooltips.forEach(tooltip => {
+    tooltip.addEventListener('click', openPopup);
+  });
+  tooltipClose.addEventListener('click', closePopup);
+  // if (window.innerWidth < 767) {
 
-    tooltips.forEach(tooltip => {
-      tooltip.addEventListener('click', openPopup);
-    });
-    tooltipClose.addEventListener('click', closePopup);
-  } else {
-    tooltips.forEach(tooltip => {
-      tooltip.removeEventListener('click', openPopup);
-    });
-    tooltipClose.removeEventListener('click', closePopup);
-  }
+  //   tooltips.forEach(tooltip => {
+  //     tooltip.addEventListener('click', openPopup);
+  //   });
+  //   tooltipClose.addEventListener('click', closePopup);
+  // } else {
+  //   tooltips.forEach(tooltip => {
+  //     tooltip.removeEventListener('click', openPopup);
+  //   });
+  //   tooltipClose.removeEventListener('click', closePopup);
+  // }
 }
-resizeHandler();
-window.addEventListener('resize', resizeHandler);
+tooltipPopupInit();
+// window.addEventListener('resize', resizeHandler);
