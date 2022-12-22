@@ -1,3 +1,4 @@
+if(document.querySelector('.tagWrapper') !==null){
 let triggerStatus = {
   "chart1": false,
   "chart2": false,
@@ -1230,3 +1231,4 @@ const tooltipPopupInit = () => {
 }
 tooltipPopupInit();
 // window.addEventListener('resize', resizeHandler);
+}
